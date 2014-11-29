@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <!--customized colored theme! go to themeroller.jquery.com to do another one. this one has "a" only. Cons: havn't found centered headers:
+            <link rel="stylesheet" href="css/themes/my-custom-theme.css" />
+            <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />-->
+
+
+        <!-- Load custom CSS before jQuery Mobile CSS! -->
+        <style type="text/css">
+            .ui-panel-inner {
+                background-color:lightblue;
+            }
+            .ui-body-a, .ui-overlay-a {
+                color: rgb(50, 150, 50) !important;
+                text-shadow: none !important;
+            }
+            .cbxGroupHome{
+            }
+            .layers
+            {
+            }
+            .to_append_cb{
+                width:600px;
+            }
+            label{
+                width:30em;
+            }
+        </style>
+
+
+        <!-- 1. must have Internet access:
+            <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.3/jquery.mobile.structure-1.4.3.min.css"/>
+            <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+            <script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>-->
+
+        <!-- 2. don't need internet access: -->
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.4.min.css" />
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/jquery.mobile-1.4.4.min.js"></script>
+
+        <script src="js/index.js" type="text/javascript"></script>
+        <title>Recipe Assistant</title>
+
+
+    </head>
+
+    <body>
+
+
+        <div data-role="page" data-dom-cache="false" id="open_recipe">
+            <header data-role="header" >
+                <h1> recipe name </h1>
+                <a href="#home" class="ui-btn ui-corner-all ui-icon-carat-l ui-btn-icon-notext">Carat-l Icon</a>
+                <a href="#publish" class="ui-btn ui-corner-all ui-icon-arrow-u ui-btn-icon-notext">arrow-u Icon</a>
+            </header>
+
+            <article data-role="content" id="open_recipe_content">
+                <div>
+                    <h4>Ingredients:</h4>
+
+                    <!--dont use ui-field-contain class here, because I am building rows on the fly, jquery styles got messed up and are way too hard(60x effort) to achieve the same result as building it statically.so, I am ok with no native looking styles around my check box and labels.
+                    -->
+                    <div class="to_append_cb">
+                    </div>
+
+
+                    <div class="ui-grid-a" >
+                        <div class="ui-block-a"><button type="button" id="checkall_openrecipe">Check All</button></div>
+                        <div class="ui-block-b"><button type="button" id="add2shplst_openrecipe">Add to Shopping List</button></div>
+                    </div>
+
+
+
+                </div>
+
+                <div>
+                    <h4>Directions:</h4>
+                    <ol>
+                        <!--	<li> Stir in garlic and ginger; cook, stirring frequently, for 3 to 4 minutes. Season with salt and pepper, and then stir in black bean sauce. Continue cooking until green beans are tender.</li>
+                        -->
+                    </ol>
+                </div>
+
+            </article>
+
+            <footer data-role="footer" data-position="fixed">
+                <nav data-role="navbar">
+                    <ul>
+                        <li><a href="#home" data-icon="home">Home</a></li>
+                        <li><a href="#favorites" data-icon="star">Favorites</a></li>
+                        <li><a href="#shoppinglist" data-icon="shop">Shopping List</a></li>
+                        <li><a href="#profile" data-icon="user">Profile</a></li>
+                    </ul>
+                </nav>
+            </footer>
+        </div><!-- page-->
+
+
+        <div data-role="page" data-dom-cache="false" data-theme="a" id="home">
+            <header data-role="header" >
+                <h1> Home </h1>
+                <a href="#">Popular</a>
+                <a href="#publish" class="ui-btn ui-corner-all ui-icon-arrow-u ui-btn-icon-notext">arrow-u Icon</a> 
+            </header>
+
+            <article data-role="content" id="home_content">
+                <ul data-role="listview" data-filter="true" id="listview_home">
+
+
+                </ul>
+            </article>
+
+            <footer data-role="footer" data-position="fixed">
+                <nav data-role="navbar">
+                    <ul>
+                        <li><a href="#home" data-icon="home">Home</a></li>
+                        <li><a href="#favorites" data-icon="star">Favorites</a></li>
+                        <li><a href="#shoppinglist" data-icon="shop">Shopping List</a></li>
+                        <li><a href="#profile" data-icon="user">Profile</a></li>
+                    </ul>
+                </nav>
+            </footer>
+        </div><!-- page-->
+
+
+        <div data-role="page" data-dom-cache="false" data-theme="a" id="signin">
+            <header data-role="header" >
+                <h1>Sign In</h1>
+            </header>
+
+            <article data-role="content"  id="login_content">	
+                <div data-role="fieldcontain">
+                    <label id="username">User Name:</label>
+                    <input type="text" name="username">
+                </div>
+                <div data-role="fieldcontain">
+                    <label id="password">Password:</label>
+                    <input type="text" name="password">
+                </div>
+                <button onclick="location.href = '#home'">Sign In</button>
+                <button onclick="location.href = '#home'">Continue as Guest</button>
+                <a href="#signup">Sign Up</a>
+                <p>Note: if you continue as guest, you cannot publish recipes to the world and view your user profile.</p>
+            </article>
+        </div><!--page-->
+
+        <div data-role="page" data-dom-cache="false" data-theme="a" id="signup">
+            <header data-role="header" >
+                <h1>Sign Up</h1>
+                <a href="#signin" class="ui-btn ui-corner-all ui-icon-carat-l ui-btn-icon-notext">Carat-l Icon</a> 
+            </header>
+
+            <article data-role="content" id="registercontent">	
+                <div data-role="fieldcontain">
+                    <label id="username2">User Name:</label>
+                    <input type="text" name="username">
+                </div>
+                <div data-role="fieldcontain">
+                    <label id="password2">Password:</label>
+                    <input type="text" name="password">
+                </div>
+                <div data-role="fieldcontain">
+                    <label id="cfmpassword">Confirm Password:</label>
+                    <input type="text" name="password1">
+                </div>
+
+                <div data-role="fieldcontain">
+                    <label id="email2">Email:</label>
+                    <input type="text" name="email">
+                </div>
+                <button onclick="location.href = '#signin'">Submit</button>
+            </article>
+        </div><!--page-->
+
+        <div data-role="page" data-dom-cache="false" data-theme="a" id="publish">
+            <header data-role="header" >
+                <h1>Publish New Recipe</h1>
+                <a href="#home" class="ui-btn ui-corner-all ui-icon-carat-l ui-btn-icon-notext">Carat-l Icon</a> 
+            </header>
+
+            <article data-role="content" id="publishcontent">	
+                <ul data-role="listview" data-inset="true" class="ui-listview">
+                    <li data-role="fieldcontain" class="ui-field-contain ui-body ui-br ui-li ui-li-static ui-body-c">
+                        <label id="rcpname">Recipe Name:</label>
+                        <input type="text" name="name" id="name" class="ui-input-text ui-body-c" value=""  />
+                    </li>
+
+                    <li data-role="fieldcontain" class="ui-field-contain ui-body ui-br ui-li ui-li-static ui-body-c">
+                        <label id="enteredIng">Ingredients:</label>
+                        <div class="ui-grid-a" >
+                            <div class="ui-block-a" style="width:90%">
+                                <input type="text" name="enteredIng" placeholder="Enter one ingredient"></div>
+                            <div class="ui-block-b" style="width:10%">
+                                <button class="ui-btn ui-corner-all ui-icon-check ui-btn-icon-notext">check Icon</button></div>
+                        </div>
+
+                        <label></label>
+                        <fieldset data-role="controlgroup" class="ui-controlgroup">
+                            <div class="ui-control-group-controls">
+                                <label style="border: 3px red;">2 tablespoons white sugar</label>
+                                <label>1 egg</label>
+                            </div>
+                        </fieldset>
+                    </li>
+                    <li>
+                        <label id="directions">Directions:</label>
+                        <textarea rows="4" cols="50">
+1.
+2.
+3.
+                        </textarea>
+                    </li>
+                    <li><div  style="margin:0 auto;">
+                            <a href="#"><img src="http://dummyimage.com/500x400/292929/e3e3e3&text=Add Photo" alt="" /></a>
+                        </div>
+                    </li>
+                    <!--			<a href="#" data-icon="plus">Add Photo</a>-->
+                </ul>
+                <div class="ui-grid-a" >
+                    <div class="ui-block-a" style="width:60%"></div>
+                    <div class="ui-block-b" style="width:40%">
+                        <button type="submit">Submit</button>
+                    </div>
+                </div>
+                <!--this one, the label will not be on 1 row when the screen width is small
+                        <div data-role="fieldcontain">
+                    <label for="name">Recipe Name:</label>
+                    <input type="text" name="name" id="name" value=""  /> 
+                    </div> -->
+            </article>
+
+            <footer data-role="footer" data-position="fixed">
+                <nav data-role="navbar">
+                    <ul>
+                        <li><a href="#home" data-icon="home">Home</a></li>
+                        <li><a href="#favorites" data-icon="star">Favorites</a></li>
+                        <li><a href="#shoppinglist" data-icon="shop">Shopping List</a></li>
+                        <li><a href="#profile" data-icon="user">Profile</a></li>
+                    </ul>
+                </nav>
+            </footer>
+        </div><!--page-->
+
+
+
+        <div data-role="page" data-dom-cache="false" data-theme="a" id="favorites">    
+            <header data-role="header" >
+                <h1> Favorites </h1>
+            </header>
+
+            <article data-role="content" id="favorites_content">
+                <ul data-role="listview" data-filter="true">
+                    <li>
+                        <a href="#buns">
+                            <h1>Chinese Steamed Buns</h1>
+                            <img src="img/buns.jpg" alt="chinese steamed buns"/>
+                        </a>
+                    </li>
+                </ul>
+            </article>
+
+            <footer data-role="footer" data-position="fixed">
+                <nav data-role="navbar">
+                    <ul>
+                        <li><a href="#home" data-icon="home">Home</a></li>
+                        <li><a href="#favorites" data-icon="star">Favorites</a></li>
+                        <li><a href="#shoppinglist" data-icon="shop">Shopping List</a></li>
+                        <li><a href="#profile" data-icon="user">Profile</a></li>
+                    </ul>
+                </nav>
+            </footer>
+        </div><!--page-->
+
+        <div data-role="page" data-dom-cache="false" data-theme="a" id="shoppinglist">
+            <header data-role="header" >
+                <h1> Shopping List </h1>
+            </header>
+
+            <article data-role="content" id="shoppinglistcontent">
+
+                <div id="shplst_grid" class="ui-grid-a" >
+                    <div class="ui-block-a" style="width:90%">
+                        <input type="text" id="enteredIngrd" placeholder="Enter ingredient to buy"/></div>
+                    <div class="ui-block-b" style="width:10%">
+                        <button id="bt_add_ingrd" class="ui-btn ui-corner-all ui-icon-check ui-btn-icon-notext">check Icon</button></div>
+                </div>
+
+                <!-- these will be affected by check all -->
+                <div class="to_append_cb">
+                </div>
+                <!--Because checkboxes use the label element for the text displayed next to the checkbox form element, we recommend wrapping the checkbox in a fieldset element that has a legend which acts as the title for the question.
+                 Add the data-role="controlgroup" attribute to the fieldset so it can be styled in a parallel way as text inputs, selects or other form elements.-->
+                <!-- <legend><h4>Ingredients</h4>`</legend>-->
+
+                <!--    <input id="cbx1"  type="checkbox" class="cb_shplst"/>
+                    <label class="lb_cb_shplst" for="cbx1">1 cup vegetable oil</label>
+                    
+                    <input id="cbx2" type="checkbox" class="cb_shplst"/> 
+                    <label class="lb_cb_shplst" for="cbx2">1 cup vegetable oil</label>
+                    
+                    <input id="cbx3" type="checkbox"  class="cb_shplst"/>
+                    <label class="lb_cb_shplst" for="cbx3">13 pounds fresh green beans, trimmed</label>
+                    
+                    <input id="cbx4" type="checkbox"  class="cb_shplst"/> 
+                    <label class="lb_cb_shplst" for="cbx4">5 tablespoons minced garlic</label>
+                    
+                    <input id="cbx5" type="checkbox"  class="cb_shplst"/> 
+                    <label class="lb_cb_shplst" for="cbx5">5 tablespoons minced fresh ginger root</label>-->
+
+
+
+
+                <div class="ui-grid-a" >
+                    <div class="ui-block-a"><button id="checkall_shplst">Check All</button></div>
+                    <div class="ui-block-b"><button id="dlt_item_shplst">Delete</button></div>
+                </div>
+            </article>
+
+            <footer data-role="footer" data-position="fixed">
+                <nav data-role="navbar">
+                    <ul>
+                        <li><a href="#home" data-icon="home">Home</a></li>
+                        <li><a href="#favorites" data-icon="star">Favorites</a></li>
+                        <li><a href="#shoppinglist" data-icon="shop">Shopping List</a></li>
+                        <li><a href="#profile" data-icon="user">Profile</a></li>
+                    </ul>
+                </nav>
+            </footer>
+        </div><!--page-->
+
+        <div data-role="page" data-theme="a" id="profile">
+            <header data-role="header" >
+                <h1>Profile</h1>
+            </header>
+
+            <article data-role="content" id="profilecontent">
+                <h3>My Account:</h3>
+                <label>User Name: John2014</label>
+                <label>Email: John2014@gmail.com</label>
+                <button onclick="location.href = '#signin'">Sign Out</button>
+                <h3>Recipes I Uploaded:</h3>
+
+                <ul data-role="listview" data-inset="true">
+                    <li>
+                        <a href="#greenbean">
+                            <h1>Chinese Green Bean Stir-Fry</h1>
+                            <img src="img/green_bean.jpg" alt="green bean stir fry"/>
+                        </a>
+                    </li>
+
+                </ul>
+
+
+            </article>
+
+            <footer data-role="footer" data-position="fixed">
+                <nav data-role="navbar">
+                    <ul>
+                        <li><a href="#home" data-icon="home">Home</a></li>
+                        <li><a href="#favorites" data-icon="star">Favorites</a></li>
+                        <li><a href="#shoppinglist" data-icon="shop">Shopping List</a></li>
+                        <li><a href="#profile" data-icon="user">Profile</a></li>
+                    </ul>
+                </nav>
+            </footer>
+        </div>
+
+        <!--<div data-role="page" id="greenbean">
+        <header data-role="header" >
+            <h1> Chinese Green Bean Stir Fry</h1>
+            <a href="#home" class="ui-btn ui-corner-all ui-icon-carat-l ui-btn-icon-notext">Carat-l Icon</a>
+            <a href="#publish" class="ui-btn ui-corner-all ui-icon-arrow-u ui-btn-icon-notext">arrow-u Icon</a>
+        </header>
+        
+        <article data-role="content" id="greenbeanExpand">
+        <div>
+        <h4>Ingredients:</h4>
+        
+        
+        <form method="get" action="">
+          <fieldset id="ctl_grp_home" data-role="controlgroup">Because checkboxes use the label element for the text displayed next to the checkbox form element, we recommend wrapping the checkbox in a fieldset element that has a legend which acts as the title for the question.
+           Add the data-role="controlgroup" attribute to the fieldset so it can be styled in a parallel way as text inputs, selects or other form elements.
+            <legend><h4>Ingredients</h4>`</legend>
+            
+            <input id="cb2" type="checkbox" class="cbxGroupHome"/> 
+            <label class="lb_cb_home" for="cb2">1 cup vegetable oil</label>
+            
+            <input id="cb3" type="checkbox" class="cbxGroupHome"/>
+            <label class="lb_cb_home" for="cb3">13 pounds fresh green beans, trimmed</label>
+            
+            <input id="cb4" type="checkbox" class="cbxGroupHome"/> 
+            <label class="lb_cb_home" for="cb4">5 tablespoons minced garlic</label>
+            
+            <input id="cb5" type="checkbox" class="cbxGroupHome"> 
+            <label class="lb_cb_home" for="cb5">5 tablespoons minced fresh ginger root</label>
+          </fieldset>
+        </form>
+        
+        
+        <div class="ui-grid-a" >
+        <div class="ui-block-a"><button type="button" id="checkall_home">Check All</button></div>
+        <div class="ui-block-b"><button type="button">Add to Shopping List</button></div>
+        </div>
+        
+        </div>
+        
+        <div>
+        <h4>Directions:</h4>
+        <ol>
+                <li> Stir in garlic and ginger; cook, stirring frequently, for 3 to 4 minutes. Season with salt and pepper, and then stir in black bean sauce. Continue cooking until green beans are tender.</li>
+        </ol>
+        </div>
+        
+        </article>
+        
+        <footer data-role="footer" data-position="fixed">
+            <nav data-role="navbar">
+                <ul>
+                        <li><a href="#home" data-icon="home">Home</a></li>
+                        <li><a href="#favorites" data-icon="star">Favorites</a></li>
+                        <li><a href="#shoppinglist" data-icon="shop">Shopping List</a></li>
+                        <li><a href="#profile" data-icon="user">Profile</a></li>
+                        </ul>
+                </nav>
+        </footer>
+        </div> page-->
+
+
+
+
+
+        <!--
+        
+        <div data-role="page" data-theme="b" id="Page2" data-dialog="true">
+                  <div data-role="header" > has a close button if the dialog has header
+                        <h2> My App </h2>
+                    </div>
+                    
+                <div class="ui-content" id="Page2_Content">
+               <p>Wanna eat some hot food?</p>
+               <a href="#Page1" data-rel="back">Back</a>
+            </div>
+        </div>-->
+
+
+        <script type="text/javascript">
+            function checkAll_openRecipe() {
+                //alert("checking all");
+                $("#checkall_openrecipe").html("Uncheck All");
+                $("input.cb_openrecipe").prop("checked", false);//.checkboxradio("refresh");
+                $(".lb_openrecipe").trigger("click");
+            }
+            function uncheckAll_openRecipe() {
+                //alert("unChecking All");
+                $("#checkall_openrecipe").html("Check All");
+                $("input.cb_openrecipe").prop("checked", true);
+                $(".lb_openrecipe").trigger("click");
+            }
+            function checkAll_shplst() {
+                //alert("Checking All");
+                $("#checkall_shplst").html("Uncheck All");
+                $("input.cb_shplst").prop("checked", false);
+                $(".lb_shplst").trigger("click");
+            }
+            function uncheckAll_shplst() {
+                //alert("unchecking all");
+                $("#checkall_shplst").html("Check All");
+                $("input.cb_shplst").prop("checked", true);//.checkboxradio("refresh");
+                $(".lb_shplst").trigger("click");
+            }
+
+            //$(function(){ //doesn't work
+            //    $("#checkall_home").click(function(){
+            //    $("form").find(":checkbox").attr("checked",true);    
+            //    });
+            //});
+
+            //$("ul li h1").css("border", "3px solid red");
+            //$(":checkbox").before("Checkbox:");
+            //$(":checked").before("Checked:");
+
+
+            var recipedata = [];
+            $.getJSON("recipedata.json", function (data) {
+                console.log("successfully read the json data into javascript object");
+                //   console.log("JSON Data: " + data.recipes[0].name); 
+                //   console.log("JSON Data length: " + data.recipes.length); 
+            })
+                    .done(function (data) {
+                        $.each(data.recipes, function (i, item) {
+                            //build this item(array element) into recipedata js array: otherwise many associative array objects are undefined when accessing recipedata
+                            //        var assoArrayItem={};//must initialize associative array object in js like this.
+                            //        assoArrayItem["name"]=item.name;
+                            //        assoArrayItem["src"]=item.src;
+                            //        assoArrayItem["ingredients"]=[];
+                            //        for (var i=0;i<item.ingredients.length;i++){
+                            //            assoArrayItem.ingredients.push(item.ingredients[i]);
+                            //        }
+                            //        
+                            //        assoArrayItem["directions"]=[];
+                            //        for (var i=0;i<(item.directions).length;i++){ //err: can't read length property of undefined.
+                            //            assoArrayItem.directions.push(item.directions[i]);
+                            //        }
+                            //        //add the associ object to recipedata(js array):
+                            //        recipedata.push(assoArrayItem);
+
+                            console.log("adding to the listview_home: " + item.name);
+                            var obj = item;//the point is creating an object equal to the {} object in data.recipes array, then use "for in" syntax
+                            //        for(var key in obj){
+                            //            var attrName=key;
+                            //            var attrValue=obj[key];
+                            //            //console.log("attrName: "+attrName+", value: "+attrValue);
+                            //        }
+                            //console.log(obj.ingredients.length);        
+                            recipedata.push(obj);
+
+                            //dynamically add this listview li into home page:
+                            $list_item_html = $("<li><a href='#open_recipe' class='to_openrecipe' data-params=" + i + "><h1>" + item.name + "</h1><img src='" + item.src + "' alt='" + item.name + "'/></a></li>");
+                            $("#listview_home").append($list_item_html);
+                        });
+                    });
+
+            //$("#listview_home").listview("refresh");
+            //  $("#listview_home li").remove(); //remove only if the set is not empty
+
+
+            //$(document).delegate('#open_recipe', 'pageshow', function() {
+            //    alert("#open_recipe page show!");
+            //}); 
+            $("button#bt_add_ingrd").click(function (evt) {
+                var numItemsInShplst = $(".lb_shplst").size();
+                //console.debug("before adding this ingrd: "+numItemsInShplst); 
+                $lb_and_cb = $("<div class='ui-grid-a' ><div class='ui-block-a' style='width:10%'><input id='" + "cb_" + numItemsInShplst + "' type='checkbox' class='cb_shplst'/></div><div class='ui-block-b' style='width:90%'><label class='lb_shplst' for='" + "cb_" + numItemsInShplst + "'>" + $("#enteredIngrd").val() + "</label></div></div>");
+                $("#shoppinglist div.to_append_cb").append($lb_and_cb); //the class is on a div instantiated inside fieldview at run time on shopping list page
+                $("#enteredIngrd").val("");
+                //console.debug("after adding this ingrd: "+$(".lb_shplst").size()); 
+            });
+
+            $("a[href='#shoppinglist']").click(function (evt) {
+                //alert("click");
+                uncheckAll_shplst();
+            });
+
+
+            $('#checkall_openrecipe').click(function (evt) {
+                    if ($("#checkall_openrecipe").html() === "Check All") {
+                        checkAll_openRecipe();
+                    } else {
+                        uncheckAll_openRecipe();
+                    }
+            });
+            $('#dlt_item_shplst').click(function (evt) {
+                    //alert($("input.cb_shplst:checked").length);
+                    $("input.cb_shplst:checked").parent().parent().remove();//remove all div class=ui-checkbox in div class=ui-controlgroup-controls in fieldset.
+                   // $("input.cb_shplst:checked").prev().remove();//remove all the labels for the checked cb first
+                   // $("input.cb_shplst:checked").remove();
+                    uncheckAll_shplst();
+            });
+
+            window.localStorage.setItem("Peng", "jiayi");
+            var keyname = window.localStorage.key(0);
+            alert(keyname);
+            // keyname is now equal to "key"
+            var value = window.localStorage.getItem(keyname);
+            alert(value);
+            // value is now equal to "value"
+            window.localStorage.removeItem(keyname);
+            // window.localStorage.setItem("key2", "value2");
+            // window.localStorage.clear();
+            // localStorage is now empty
+
+
+
+
+            $(document).on('pageinit', function (e) {
+                $('a.to_openrecipe').click(function (evt) {
+                    if (evt.handled !== true) {
+                        var me = $(this), data = me.data('params');
+                        //console.log(data);  the id in string
+                        var recipe_clicked = parseInt(data);
+
+                        //remove all children objects and texts in div class=ui-controlgroup-controls inside fieldset
+                        $("#open_recipe div.to_append_cb").empty();
+                        $("#open_recipe ol").empty();
+
+                        //append to: fieldset containing checkboxes and labels for checkboxes
+                        for (var i = 0; i < recipedata[recipe_clicked].ingredients.length; i++) {
+                            $lb_and_cb = $("<div class='ui-grid-a' ><div class='ui-block-a' style='width:10%'><input id='" + "cb" + i + "' type='checkbox' class='cb_openrecipe'/></div><div class='ui-block-b' style='width:90%'><label class='lb_openrecipe' for='" + "cb" + i + "'>" + recipedata[recipe_clicked].ingredients[i] + "</label></div></div>");
+                            $("#open_recipe div.to_append_cb").append($lb_and_cb);
+                        }
+                        $("#open_recipe div.to_append_cb").trigger("create");//apply styles after dynamically adding content to this item
+
+                        //append to: directions ol content:  
+                        for (var i = 0; i < recipedata[recipe_clicked].directions.length; i++) {
+                            $direction_item = $("<li>" + recipedata[recipe_clicked].directions[i] + "</li>");
+                            $("#open_recipe ol").append($direction_item);
+                        }
+                        //$("#open_recipe ol").trigger("create");
+
+                        //change header text:
+                        $("#open_recipe h1").html(recipedata[recipe_clicked].name);
+
+                        uncheckAll_openRecipe();
+                        //$("#open_recipe).trigger("create");
+                        evt.handled = true;
+                    }
+                });
+
+
+
+
+
+                $('#add2shplst_openrecipe').click(function (evt) {
+                    if (evt.handled !== true) // This will prevent event triggering more then once
+                    {
+
+                        //alert($.isEmptyObject({})); 
+                        //           if ($.isEmptyObject($("#shoppinglist fieldset"))!==true){
+                        //there are items in shplst. count them
+                        var shplst_count = $("#shoppinglist div.to_append_cb").children().length;
+                        //           }
+                        //alert("shplst count before add: "+shplst_count);
+                        alert("added " + $("#open_recipe :checked").length + " item(s) to the shopping list.");
+                        var new_cb_id = shplst_count;
+                        //alert($("#open_recipe :checked").parent().next().children(".lb_openrecipe").length);
+
+                        $("#open_recipe :checked").prev().each(function () {
+                            //	alert($(this).html());
+                            $lb_and_cb = $("<div class='ui-grid-a' ><div class='ui-block-a' style='width:10%'><input id='" + "cb_" + new_cb_id + "' type='checkbox' class='cb_shplst'/></div><div class='ui-block-b' style='width:90%'><label class='lb_shplst' for='" + "cb_" + new_cb_id + "'>" + $(this).html() + "</label></div></div>");
+                            $("#shoppinglist div.to_append_cb").append($lb_and_cb); //the class is on a div instantiated inside fieldview at run time on shopping list page
+                            new_cb_id++;
+                        });
+
+                        //$("#shoppinglist div.to_append_cb").trigger("create");//update style
+                        uncheckAll_openRecipe();
+                        evt.handled = true;
+                    }
+                });
+
+
+                $('#checkall_shplst').click(function (evt) {
+                    if (evt.handled !== true) // This will prevent event triggering more then once
+                    {
+                        //alert('Clicked');
+                        if ($("#checkall_shplst").html() === "Check All") {
+                            checkAll_shplst();
+                        } else {
+                            uncheckAll_shplst();
+                        }
+                        evt.handled = true;
+                    }
+                });
+
+
+
+
+                //    e.handled = true;
+                //    	function saveChecked(){
+                //	alert($("#cbxgroup :checked").length);
+                //	var border=3;
+                //     $(":checked").parent().each(function() {
+                //	     $(this).css("border", border+"px solid red");
+                //	 	alert($(this).get(0).innerHTML);
+                //	 });
+                //}
+
+                //function checkAll(){
+                //   // $("fieldset :checked").next().css("border", "3px solid red"); //next() returns nothing because dom switch the order of label and checkbox. the labels are before cbx.
+                //   //$("fieldset :checked").prev().text("length");.
+                //   
+                //} 
+            });
+
+            /*
+             //err: cannot call methods on controlgroup prior to initialization; attempted to call method 'refresh' jquery-1.11.1.min
+             $('#dlt_ckd_shplst').on("click",function() {
+             alert( $("input.cb_shplst:checked").length);     
+             $("input.cb_shplst:checked").remove();
+             $("#ctl_grp_home").controlgroup("refresh");
+             });
+             */
+        </script>
+    </body>
+</html>
