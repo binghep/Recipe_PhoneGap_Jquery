@@ -1,0 +1,37 @@
+{"recipes" : 
+	[
+		{"name" : "green bean stir fry",
+		"src" : "img/green_bean.jpg",
+		"ingredients" : 
+				[
+					"1 cup vegetable oil",
+					"13 pounds fresh green beans, trimmed",
+					"5 tablespoons minced garlic",
+					"5 tablespoons minced fresh ginger root"
+				],
+		"directions":
+				[
+					"In a large wok, heat oil over medium-high heat. Stir in green beans; cook, stirring frequently, for 1 to 2 minutes.",
+					"Stir in garlic and ginger; cook, stirring frequently, for 3 to 4 minutes. Season with salt and pepper, and then stir in black bean sauce. Continue cooking until green beans are tender."
+				]
+		},
+
+
+		{"name" : "Chinese Steamed Buns",
+		"src" : "img/buns.jpg",
+		"ingredients" : 
+				[
+					"buns1",
+					"buns2"
+				],
+		"directions":
+				[
+					"make buns step 1",
+					"make buns step 2"
+				]
+		}
+
+
+
+	]
+}
