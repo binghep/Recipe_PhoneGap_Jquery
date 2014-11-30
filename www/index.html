@@ -51,8 +51,8 @@
                 /*width:20em;*/
                 width:250px;
             }
-            .header_footer_color{
-                background-color:#6666FF;
+            .blue_color{
+                background-color:#0099FF !important;
             }
             /*            div {
                             -webkit-border-image: url(border.png) 30 30 round;  Safari 3.1-5 
@@ -114,7 +114,8 @@
             </header>
 
             <article data-role="content" id="open_recipe_content">
-                <div style="border-image: url(border.png) 10 10 round;">
+                <!--<div style="border-image: url(border.png) 10 10 round;">-->
+                <div style="border:2px solid #3366CC;">
                     Ingredients:
 
                     <!--dont use ui-field-contain class here, because I am building rows on the fly, jquery styles got messed up and are way too hard(60x effort) to achieve the same result as building it statically.so, I am ok with no native looking styles around my check box and labels.
@@ -123,12 +124,12 @@
                     </div>
 
                     <div class="ui-grid-a" >
-                        <div class="ui-block-a"><button type="button" id="checkall_openrecipe">Check All</button></div>
-                        <div class="ui-block-b"><button type="button" id="add2shplst_openrecipe">Add to Shopping List</button></div>
+                        <div class="ui-block-a"><button  class="blue_color" type="button" id="checkall_openrecipe">Check All</button></div>
+                        <div class="ui-block-b"><button  class="blue_color" type="button" id="add2shplst_openrecipe">Add to Shopping List</button></div>
                     </div>
                 </div>
                 <br />
-                <div style="border-image: url(border.png) 10 10 round;">
+                <div style="border:2px solid #3366CC;">
                     Directions:
                     <ol>
                         <!--	<li> Stir in garlic and ginger; cook, stirring frequently, for 3 to 4 minutes. Season with salt and pepper, and then stir in black bean sauce. Continue cooking until green beans are tender.</li>
@@ -166,8 +167,8 @@
                     <label id="password">Password:</label>
                     <input type="text" name="password">
                 </div>
-                <button onclick="location.href = '#home'">Sign In</button>
-                <button onclick="location.href = '#home'">Continue as Guest</button>
+                <button  class="blue_color"  onclick="location.href = '#home'">Sign In</button>
+                <button  class="blue_color" onclick="location.href = '#home'">Continue as Guest</button>
                 <a href="#signup">Sign Up</a>
                 <p>Note: if you continue as guest, you cannot publish recipes to the world and view your user profile.</p>
             </article>
@@ -197,7 +198,7 @@
                     <label id="email2">Email:</label>
                     <input type="text" name="email">
                 </div>
-                <button onclick="location.href = '#signin'">Submit</button>
+                <button  class="blue_color" onclick="location.href = '#signin'">Submit</button>
             </article>
         </div><!--page-->
 
@@ -220,7 +221,7 @@
                             <div class="ui-block-a" style="width:90%">
                                 <input type="text" name="enteredIng" placeholder="Enter one ingredient"></div>
                             <div class="ui-block-b" style="width:10%">
-                                <button class="ui-btn ui-corner-all ui-icon-check ui-btn-icon-notext">check Icon</button></div>
+                                <button class="blue_color ui-btn ui-corner-all ui-icon-check ui-btn-icon-notext">check Icon</button></div>
                         </div>
 
                         <label></label>
@@ -240,7 +241,7 @@
                         </textarea>
                     </li>
                     <li>
-                        <button> Add Photo </button>
+                        <button class="blue_color"> Add Photo </button>
                         <!--<div  style="margin:0 auto;"><a href="#"><img src="http://dummyimage.com/500x400/292929/e3e3e3&text=Add Photo" alt="" /></a>  </div>-->
                     </li>
                     <!--			<a href="#" data-icon="plus">Add Photo</a>-->
@@ -248,7 +249,7 @@
                 <div class="ui-grid-a" >
                     <div class="ui-block-a" style="width:60%"></div>
                     <div class="ui-block-b" style="width:40%">
-                        <button type="submit">Submit</button>
+                        <button  class="blue_color" type="submit">Submit</button>
                     </div>
                 </div>
                 <!--this one, the label will not be on 1 row when the screen width is small
@@ -302,7 +303,7 @@
 
             <article data-role="content" id="shoppinglistcontent">
                 <div id="shplst_empty_text" style="color: blue">Your shopping list is empty.</div>
-                <div style="border-image: url(border.png) 10 10 round;">
+                <div style="border:2px solid #3366CC;">
                     <div id="shplst_grid" class="ui-grid-a" >
                         <div class="ui-block-a" style="width:90%">
                             <input type="text" id="enteredIngrd" placeholder="Enter ingredient to buy"/></div>
@@ -337,8 +338,8 @@
 
 
                     <div class="ui-grid-a" >
-                        <div class="ui-block-a"><button id="checkall_shplst">Check All</button></div>
-                        <div class="ui-block-b"><button id="dlt_item_shplst">Delete</button></div>
+                        <div class="ui-block-a"><button  class="blue_color" id="checkall_shplst">Check All</button></div>
+                        <div class="ui-block-b"><button  class="blue_color" id="dlt_item_shplst">Delete</button></div>
                     </div>
                 </div>
 
@@ -362,16 +363,16 @@
             </header>
 
             <article data-role="content" id="profilecontent">
-                <div style="border-image: url(border.png) 10 10 round;">
+                <div style="border:2px solid #3366CC;">
                     <h3>My Account:</h3>
                     <label>User Name: John2014</label>
                     <label>Email: John2014@gmail.com</label>
-                    <button onclick="location.href = '#signin'">Sign Out</button>
+                    <button class="blue_color" onclick="location.href = '#signin'">Sign Out</button>
                 </div>
 
-                <a href="#publish" class="ui-btn ui-corner-all ui-icon-arrow-u">Publish Recipe to the World</a> 
+                <a style="background-color: #6666FF" href="#publish" class="ui-btn ui-corner-all ui-icon-arrow-u">Publish Recipe to the World</a> 
 
-                <div style="border-image: url(border.png) 10 10 round;">
+                <div style="border:2px solid #3366CC;">
                     <h3>Recipes I Uploaded:</h3>
 
                     <ul data-role="listview" data-inset="true">
@@ -452,9 +453,9 @@
                             $("#listview_home").append($list_item_html);
                         });
                     });
-           // $("#listview_home").trigger("create");
-           //$("#listview_home").listview();
-           // $("#home").page();
+            // $("#listview_home").trigger("create");
+            //$("#listview_home").listview();
+            // $("#home").page();
             alert("Welcome, please tap on the pictures to view recipes. A minor bug is that the recipe content fails to load the first time you tap on a recipe image. Afterwards, it always works.");
             $(document).delegate('#shoppinglist', 'pageshow', function () {
                 //alert("#open_recipe page show!");
@@ -542,7 +543,7 @@
                 for (var i = 0; i < favoritedRecipes.length; i++) {
                     var recipeIndex = parseInt(favoritedRecipes[i]);
                     var item = recipedata[recipeIndex];
-                    $list_item_html = $("<li style='border-image: url(border.png) 10 10 round;border-image-outset: 15px;'><a href='#open_recipe' class='to_openrecipe' data-params=" + recipeIndex + "><h1>" + item.name + "</h1><img style='height: 200px' src='" + item.src + "' alt='" + item.name + "'/></a><div style='background-color:lightblue'>" + item.rating + " Stars   <button onClick='favoriteIt(" + recipeIndex + ")' style='display:inline-block;float:center;background-color:#99CCFF;width:80% id='bt_add_ingrd' class='ui-btn ui-corner-all ui-icon-delete ui-btn-icon-notext'>trash Icon</button>Date Added: Dec 2014 </div></li>");
+                    $list_item_html = $("<li style='border:2px solid #3366CC;'><a href='#open_recipe' class='to_openrecipe' data-params=" + recipeIndex + "><h1>" + item.name + "</h1><img style='height: 200px' src='" + item.src + "' alt='" + item.name + "'/></a><div style='background-color:lightblue'>" + item.rating + " Stars   <button onClick='favoriteIt(" + recipeIndex + ")' style='display:inline-block;float:center;background-color:#99CCFF;width:80% id='bt_add_ingrd' class='ui-btn ui-corner-all ui-icon-delete ui-btn-icon-notext'>trash Icon</button>Date Added: Dec 2014 </div></li>");
                     $('#listview_favorites').append($list_item_html);
                 }
 
@@ -601,7 +602,7 @@
             $("button#bt_add_ingrd").click(function (evt) {
                 var numItemsInShplst = $(".lb_shplst").size();
                 //console.debug("before adding this ingrd: "+numItemsInShplst); 
-                if ($("#enteredIngrd").val()===""){
+                if ($("#enteredIngrd").val() === "") {
                     alert("Ingredient name cannot be empty.");
                     return;
                 }
@@ -672,9 +673,9 @@
                 });
                 $("#favorite").trigger("create");
             });
-            
+
             $("#home").on('pageshow', function (e) {
- //bind the existing anchor in listview to open_recipe page (for creating ingrd and directions on open_recipe page when clicking on anchor)
+                //bind the existing anchor in listview to open_recipe page (for creating ingrd and directions on open_recipe page when clicking on anchor)
                 $('a.to_openrecipe').click(function (evt) {
                     if (evt.handled !== true) {
                         var me = $(this), data = me.data('params');
@@ -708,10 +709,10 @@
                     }
                 });
             });
-            
+
             $(document).on('pageinit', function (e) {
                 initFavorite();
-   
+
                 //naming convention: #add2shplst on #open_recipe page
                 $('#add2shplst_openrecipe').click(function (evt) {
                     if (evt.handled !== true) // This will prevent event triggering more then once
