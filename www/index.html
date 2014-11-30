@@ -80,6 +80,31 @@
 
     <body>
 
+        <div data-role="page" data-dom-cache="false" data-theme="a" id="home">
+            <header data-role="header"  style="background-color:#6666FF" >
+                <h1> Home </h1>
+                <!--<a href="#">Popular</a>-->
+            </header>
+
+            <article data-role="content" id="home_content">
+                <ul data-role="listview" data-filter="true" id="listview_home">
+
+
+                </ul>
+            </article>
+
+            <footer data-role="footer" data-position="fixed" data-tap-toggle="false">
+                <nav data-role="navbar">
+                    <ul>
+                        <li><a style="background-color:#343481" href="#home" data-icon="home"><label>&nbsp;</label></a></li>
+                        <li><a style="background-color:#6666FF" href="#favorites" data-icon="star"><label>&nbsp;</label></a></li>
+                        <li><a style="background-color:#6666FF" href="#shoppinglist" data-icon="shop"><label>&nbsp;</label> </a></li>
+                        <li><a style="background-color:#6666FF" href="#profile" data-icon="user"><label>&nbsp;</label></a></li>
+                    </ul>
+                </nav>
+            </footer>
+        </div><!-- page-->
+
 
         <div data-role="page" data-dom-cache="false" id="open_recipe">
             <header data-role="header" style="background-color:#6666FF">
@@ -116,7 +141,7 @@
             <footer data-role="footer" data-position="fixed"  data-tap-toggle="false">
                 <nav  data-role="navbar"> 
                     <ul>
-                        <li><a style="background-color:#343481" href="#home" data-icon="home"><label>&nbsp;</label></a></li>
+                        <li><a style="background-color:#6666FF" href="#home" data-icon="home"><label>&nbsp;</label></a></li>
                         <li><a style="background-color:#6666FF" href="#favorites" data-icon="star"><label>&nbsp;</label></a></li>
                         <li><a style="background-color:#6666FF" href="#shoppinglist" data-icon="shop"><label>&nbsp;</label> </a></li>
                         <li><a style="background-color:#6666FF" href="#profile" data-icon="user"><label>&nbsp;</label></a></li>
@@ -125,31 +150,6 @@
             </footer>
         </div><!-- page-->
 
-
-        <div data-role="page" data-dom-cache="false" data-theme="a" id="home">
-            <header data-role="header"  style="background-color:#6666FF" >
-                <h1> Home </h1>
-                <!--<a href="#">Popular</a>-->
-            </header>
-
-            <article data-role="content" id="home_content">
-                <ul data-role="listview" data-filter="true" id="listview_home">
-
-
-                </ul>
-            </article>
-
-            <footer data-role="footer" data-position="fixed" data-tap-toggle="false">
-                <nav data-role="navbar">
-                    <ul>
-                        <li><a style="background-color:#343481" href="#home" data-icon="home"><label>&nbsp;</label></a></li>
-                        <li><a style="background-color:#6666FF" href="#favorites" data-icon="star"><label>&nbsp;</label></a></li>
-                        <li><a style="background-color:#6666FF" href="#shoppinglist" data-icon="shop"><label>&nbsp;</label> </a></li>
-                        <li><a style="background-color:#6666FF" href="#profile" data-icon="user"><label>&nbsp;</label></a></li>
-                    </ul>
-                </nav>
-            </footer>
-        </div><!-- page-->
 
 
         <div data-role="page" data-dom-cache="false" data-theme="a" id="signin">
@@ -448,14 +448,18 @@
                             recipedata.push(obj);
 
                             //dynamically add this listview li into home page:
-                            $list_item_html = $("<li><a href='#open_recipe' class='to_openrecipe' data-params=" + i + "><h1>" + item.name + "</h1><img  style='height: 250px' src='" + item.src + "' alt='" + item.name + "'/></a><div style='background-color:lightblue'>" + item.rating + " Stars   <button onClick='favoriteIt(" + i + ")' style='display:inline-block;float:center;background-color:#99CCFF;width:80% id='bt_add_ingrd' class='ui-btn ui-corner-all ui-icon-star ui-btn-icon-notext'>star Icon</button></div></li>");
+                            $list_item_html = $("<li style='border:2px solid #3366CC;'><a href='#open_recipe' class='to_openrecipe' data-params=" + i + "><img  style='height: 200px' src='" + item.src + "' alt='" + item.name + "'/></a><div style='background-color:lightblue'><label style='display:inline-block;'>" + item.name + "</label><button onClick='favoriteIt(" + i + ")' style='display:inline-block;float:center;background-color:#99CCFF;width:80% id='bt_add_ingrd' class='ui-btn ui-corner-all ui-icon-star ui-btn-icon-notext'>star Icon</button><label style='padding:0;'>" + item.rating + " Stars </label>  </div></li>");
                             $("#listview_home").append($list_item_html);
                         });
                     });
-
+           // $("#listview_home").trigger("create");
+           //$("#listview_home").listview();
+           // $("#home").page();
+            alert("Welcome, please tap on the pictures to view recipes. A minor bug is that the recipe content fails to load the first time you tap on a recipe image. Afterwards, it always works.");
             $(document).delegate('#shoppinglist', 'pageshow', function () {
                 //alert("#open_recipe page show!");
                 showOrHideErrorMsg_Shplist();
+
             });
 
             function showOrHideErrorMsg_Shplist() {
@@ -531,14 +535,14 @@
                 var favoritedRecipes = JSON.parse(localStorage.getItem("arr"));
 
                 if (favoritedRecipes === null || favoritedRecipes.length === 0) {
-                    $list_empty_div_html = $("<li><div style:'color: blue'>You have not saved any recipes yet. Here, you can add any recipes to try out and add notes to them. </div></li>");
+                    $list_empty_div_html = $("<li><div style:'color: blue'>You have not saved any recipes yet. Here, you can add any recipes to try out. <br /><br />Tips: use the back button on your Android phone to resume the previous page.</div></li>");
                     $('#listview_favorites').append($list_empty_div_html);
                     return;
                 }
                 for (var i = 0; i < favoritedRecipes.length; i++) {
                     var recipeIndex = parseInt(favoritedRecipes[i]);
                     var item = recipedata[recipeIndex];
-                    $list_item_html = $("<li><a href='#open_recipe' class='to_openrecipe' data-params=" + recipeIndex + "><h1>" + item.name + "</h1><img style='height: 250px' src='" + item.src + "' alt='" + item.name + "'/></a><div style='background-color:lightblue'>" + item.rating + " Stars   <button onClick='favoriteIt(" + recipeIndex + ")' style='display:inline-block;float:center;background-color:#99CCFF;width:80% id='bt_add_ingrd' class='ui-btn ui-corner-all ui-icon-delete ui-btn-icon-notext'>trash Icon</button>Date Added: Dec 2014 </div></li>");
+                    $list_item_html = $("<li style='border-image: url(border.png) 10 10 round;border-image-outset: 15px;'><a href='#open_recipe' class='to_openrecipe' data-params=" + recipeIndex + "><h1>" + item.name + "</h1><img style='height: 200px' src='" + item.src + "' alt='" + item.name + "'/></a><div style='background-color:lightblue'>" + item.rating + " Stars   <button onClick='favoriteIt(" + recipeIndex + ")' style='display:inline-block;float:center;background-color:#99CCFF;width:80% id='bt_add_ingrd' class='ui-btn ui-corner-all ui-icon-delete ui-btn-icon-notext'>trash Icon</button>Date Added: Dec 2014 </div></li>");
                     $('#listview_favorites').append($list_item_html);
                 }
 
@@ -666,11 +670,11 @@
                         evt.handled = true;
                     }
                 });
+                $("#favorite").trigger("create");
             });
-
-            $(document).on('pageinit', function (e) {
-                initFavorite();
-                //bind the existing anchor in listview to open_recipe page (for creating ingrd and directions on open_recipe page when clicking on anchor)
+            
+            $("#home").on('pageshow', function (e) {
+ //bind the existing anchor in listview to open_recipe page (for creating ingrd and directions on open_recipe page when clicking on anchor)
                 $('a.to_openrecipe').click(function (evt) {
                     if (evt.handled !== true) {
                         var me = $(this), data = me.data('params');
@@ -703,10 +707,11 @@
                         evt.handled = true;
                     }
                 });
-
-
-
-
+            });
+            
+            $(document).on('pageinit', function (e) {
+                initFavorite();
+   
                 //naming convention: #add2shplst on #open_recipe page
                 $('#add2shplst_openrecipe').click(function (evt) {
                     if (evt.handled !== true) // This will prevent event triggering more then once
