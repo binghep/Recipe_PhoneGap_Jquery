@@ -51,6 +51,8 @@
                 /*width:20em;*/
                 width:250px;
             }
+            .center { text-align: center;
+            }
             .blue_color{
                 background-color:#0099FF !important;
             }
@@ -80,10 +82,36 @@
 
     <body>
 
+        <div data-role="page" data-dom-cache="false" data-theme="a" id="signin">
+            <header data-role="header"  style="background-color:#6666FF">
+                <h1>Sign In</h1>
+            </header>
+
+            <article data-role="content"  id="login_content">	
+                <div data-role="fieldcontain">
+                    <label id="username">User Name:</label>
+                    <input type="text" name="username">
+                </div>
+                <div data-role="fieldcontain">
+                    <label id="password">Password:</label>
+                    <input type="text" name="password">
+                </div>
+                <button  class="blue_color"  onclick="location.href = '#home'">Sign In</button>
+                <button  class="blue_color" onclick="location.href = '#home'">Continue as Guest</button>
+                <div class="center">
+                    <a href="#signup">Sign Up</a>
+                </div>
+                <p>Note: if you continue as guest, you cannot publish recipes to the world and view your user profile.</p>
+            </article>
+        </div><!--page-->
+
         <div data-role="page" data-dom-cache="false" data-theme="a" id="home">
             <header data-role="header"  style="background-color:#6666FF" >
+                <div data-role="controlgroup" data-type="horizontal" class="ui-mini ui-btn-left">
+                    <a href="#home" class="ui-btn">Popular</a>
+                    <a href="#" class="ui-btn">New</a>
+                </div>
                 <h1> Home </h1>
-                <!--<a href="#">Popular</a>-->
             </header>
 
             <article data-role="content" id="home_content">
@@ -153,27 +181,6 @@
 
 
 
-        <div data-role="page" data-dom-cache="false" data-theme="a" id="signin">
-            <header data-role="header"  style="background-color:#6666FF">
-                <h1>Sign In</h1>
-            </header>
-
-            <article data-role="content"  id="login_content">	
-                <div data-role="fieldcontain">
-                    <label id="username">User Name:</label>
-                    <input type="text" name="username">
-                </div>
-                <div data-role="fieldcontain">
-                    <label id="password">Password:</label>
-                    <input type="text" name="password">
-                </div>
-                <button  class="blue_color"  onclick="location.href = '#home'">Sign In</button>
-                <button  class="blue_color" onclick="location.href = '#home'">Continue as Guest</button>
-                <a href="#signup">Sign Up</a>
-                <p>Note: if you continue as guest, you cannot publish recipes to the world and view your user profile.</p>
-            </article>
-        </div><!--page-->
-
         <div data-role="page" data-dom-cache="false" data-theme="a" id="signup">
             <header data-role="header"  style="background-color:#6666FF">
                 <h1>Sign Up</h1>
@@ -221,14 +228,13 @@
                             <div class="ui-block-a" style="width:90%">
                                 <input type="text" name="enteredIng" placeholder="Enter one ingredient"></div>
                             <div class="ui-block-b" style="width:10%">
-                                <button class="blue_color ui-btn ui-corner-all ui-icon-check ui-btn-icon-notext">check Icon</button></div>
+                                <button class="blue_color ui-btn ui-corner-all ui-icon-plus ui-btn-icon-notext">check Icon</button></div>
                         </div>
 
                         <label></label>
                         <fieldset data-role="controlgroup" class="ui-controlgroup">
                             <div class="ui-control-group-controls">
-                                <label style="border: 3px red;">2 tablespoons white sugar</label>
-                                <label>1 egg</label>
+
                             </div>
                         </fieldset>
                     </li>
@@ -236,20 +242,20 @@
                         <label id="directions">Directions:</label>
                         <textarea rows="4" cols="50">
 1.
-2.
-3.
+
                         </textarea>
                     </li>
                     <li>
-                        <button class="blue_color"> Add Photo </button>
-                        <!--<div  style="margin:0 auto;"><a href="#"><img src="http://dummyimage.com/500x400/292929/e3e3e3&text=Add Photo" alt="" /></a>  </div>-->
+                        <div  style="margin:0 auto;">
+                            <a href="#"><img src="img/Add.jpg" alt="Add" /></a>
+                        </div>
                     </li>
-                    <!--			<a href="#" data-icon="plus">Add Photo</a>-->
                 </ul>
                 <div class="ui-grid-a" >
                     <div class="ui-block-a" style="width:60%"></div>
                     <div class="ui-block-b" style="width:40%">
-                        <button  class="blue_color" type="submit">Submit</button>
+                        <button  onclick="location.href = '#home';
+                                publishRecipe();" class="blue_color" type="submit">Publish</button>
                     </div>
                 </div>
                 <!--this one, the label will not be on 1 row when the screen width is small
@@ -308,7 +314,7 @@
                         <div class="ui-block-a" style="width:90%">
                             <input type="text" id="enteredIngrd" placeholder="Enter ingredient to buy"/></div>
                         <div class="ui-block-b" style="width:10%">
-                            <button id="bt_add_ingrd" class="ui-btn ui-corner-all ui-icon-check ui-btn-icon-notext">check Icon</button>
+                            <button id="bt_add_ingrd" class="ui-btn ui-corner-all ui-icon-plus ui-btn-icon-notext">check Icon</button>
                         </div>
                     </div>
 
@@ -360,6 +366,9 @@
         <div data-role="page" data-theme="a" id="profile">
             <header data-role="header"  style="background-color:#6666FF">
                 <h1>Profile</h1>
+                <div data-role="controlgroup" data-type="horizontal" class="ui-mini ui-btn-right" data-iconpos="right"> 
+                    <a href="#publish" class="ui-btn ui-icon-arrow-u ui-btn-icon-left">Upload</a>
+                </div>
             </header>
 
             <article data-role="content" id="profilecontent">
@@ -367,10 +376,9 @@
                     <h3>My Account:</h3>
                     <label>User Name: John2014</label>
                     <label>Email: John2014@gmail.com</label>
-                    <button class="blue_color" onclick="location.href = '#signin'">Sign Out</button>
+
                 </div>
 
-                <a style="background-color: #6666FF" href="#publish" class="ui-btn ui-corner-all ui-icon-arrow-u">Publish Recipe to the World</a> 
 
                 <div style="border:2px solid #3366CC;">
                     <h3>Recipes I Uploaded:</h3>
@@ -383,8 +391,9 @@
                             </a>
                         </li>
                     </ul>
-                </div>
 
+                </div>
+                <button class="blue_color" onclick="location.href = '#signin'">Sign Out</button>
             </article>
 
             <footer data-role="footer" data-position="fixed" data-tap-toggle="false">
@@ -414,7 +423,8 @@
 
         <script type="text/javascript">
             /*load recipedata first, otherwise functions use recipedata[i] throw an error. */
-            var recipedata = [];
+            length = 0;
+            recipedata = [];
             $.getJSON("recipedata.json", function (data) {
                 console.log("successfully read the json data into javascript object");
                 //   console.log("JSON Data: " + data.recipes[0].name); 
@@ -447,20 +457,22 @@
                             //        }
                             //console.log(obj.ingredients.length);        
                             recipedata.push(obj);
-
+                            length++;
                             //dynamically add this listview li into home page:
-                            $list_item_html = $("<li style='border:2px solid #3366CC;'><a href='#open_recipe' class='to_openrecipe' data-params=" + i + "><img  style='height: 200px' src='" + item.src + "' alt='" + item.name + "'/></a><div style='background-color:lightblue'><label style='display:inline-block;'>" + item.name + "</label><button onClick='favoriteIt(" + i + ")' style='display:inline-block;float:center;background-color:#99CCFF;width:80% id='bt_add_ingrd' class='ui-btn ui-corner-all ui-icon-star ui-btn-icon-notext'>star Icon</button><label style='padding:0;'>" + item.rating + " Stars </label>  </div></li>");
+                            $list_item_html = $("<li style='border:2px solid #3366CC;'><a href='#open_recipe' class='to_openrecipe' data-params=" + i + "><h1>" + item.name + "</h1><img style='height: 180px;' src='" + item.src + "' alt='" + item.name + "'/></a><div style='background-color:lightblue'>" + item.rating + " Stars   <button onClick='favoriteIt(" + i + ")' style='display:inline-block;float:center;background-color:#99CCFF;width:80% id='bt_add_ingrd' class='ui-btn ui-corner-all ui-icon-star ui-btn-icon-notext'>trash Icon</button> </div></li>");
+//                            $list_item_html = $("<li style='border:2px solid #3366CC;'><a href='#open_recipe' class='to_openrecipe' data-params=" + i + "><img  style='height: 200px' src='" + item.src + "' alt='" + item.name + "'/></a><div style='background-color:lightblue'><label style='display:inline-block;'>" + item.name + "</label><button onClick='favoriteIt(" + i + ")' style='display:inline-block;float:center;background-color:#99CCFF;width:80% id='bt_add_ingrd' class='ui-btn ui-corner-all ui-icon-star ui-btn-icon-notext'>star Icon</button><label style='padding:0;'>" + item.rating + " Stars </label>  </div></li>");
                             $("#listview_home").append($list_item_html);
                         });
+
                     });
             // $("#listview_home").trigger("create");
             //$("#listview_home").listview();
             // $("#home").page();
-            alert("Welcome, please tap on the pictures to view recipes. A minor bug is that the recipe content fails to load the first time you tap on a recipe image. Afterwards, it always works.");
+            //   alert("Welcome, please tap on the pictures to view recipes. A minor bug is that the recipe content fails to load the first time you tap on a recipe image. Afterwards, it always works."); //note if we navigate to home page from another page, then the style bug of the listview on homepage and this bug disappear.
+
             $(document).delegate('#shoppinglist', 'pageshow', function () {
                 //alert("#open_recipe page show!");
                 showOrHideErrorMsg_Shplist();
-
             });
 
             function showOrHideErrorMsg_Shplist() {
@@ -472,19 +484,33 @@
                     $("#shplst_empty_text").hide();
                 }
             }
-
+            window.localStorage.clear();//localStorage is now empty
             function initFavorite() {
                 updateMyFavorites_Listview();
-
                 if (navigator.userAgent.indexOf("Android") !== -1) {//get rid of flashing twice problem on Android
                     $.mobile.defaultPageTransition = 'none';
                     $.mobile.defaultDialogTransition = 'none';
                 }
             }
 
+            function publishRecipe() {
+                //alert(recipedata[0].name);
+                // alert(length);//recipedata.length property is not defined.
+                var new_recipe = {};
+                new_recipe["name"] = "new recipe";
+                new_recipe["src"] = "img/new.jpg";
+                new_recipe["rating"] = "0";
+                new_recipe["ingredients"] = ["my ingredient 1(pending)", "my ingredient 2(pending)"];
+                new_recipe["directions"] = ["my directions 1(pending)", "my directions 2(pending)"];
+                recipedata.push(new_recipe);
+                length++;
+                var lastItem_index = length - 1;
+                $list_item_html = $("<li style='border:2px solid #3366CC;'><a href='#open_recipe' class='to_openrecipe' data-params=" + lastItem_index + "><h1>" + new_recipe.name + "</h1><img style='height: 180px;' src='" + new_recipe.src + "' alt='" + "New Recipe" + "'/></a><div style='background-color:lightblue'>" + new_recipe.rating + " Stars  <button onClick='favoriteIt(" + lastItem_index + ")' style='display:inline-block;float:center;background-color:#99CCFF;width:80% id='bt_add_ingrd' class='ui-btn ui-corner-all ui-icon-star ui-btn-icon-notext'>trash Icon</button> </div></li>");
+                $("#listview_home").prepend($list_item_html);
+                alert("Recipe is successfully published.");
 
+            }
 
-            window.localStorage.clear();//localStorage is now empty
             function favoriteIt(index) {
                 var favoritedRecipes = JSON.parse(localStorage.getItem("arr"));
                 if (favoritedRecipes === null) {
@@ -492,15 +518,17 @@
                 }
                 if (favoritedRecipes.indexOf(index.toString()) === -1) {
                     favoritedRecipes.push(index.toString());
+                    localStorage.setItem("arr", JSON.stringify(favoritedRecipes));
                     alert("Added to my favorites.");
                 } else {
                     if (index > -1) {
                         favoritedRecipes.splice(favoritedRecipes.indexOf(index.toString()), 1);
                     }
+                    localStorage.setItem("arr", JSON.stringify(favoritedRecipes));
+                    updateMyFavorites_Listview();
                     alert("Removed from my favorites.");
                 }
-                localStorage.setItem("arr", JSON.stringify(favoritedRecipes));
-                updateMyFavorites_Listview();
+                //         updateMyFavorites_Listview();
 //                for (var i = 0; i < localStorage.length; i++) {
 //                    $('#listview_favorites').append(localStorage.getItem(localStorage.key(i)));
 //                }
@@ -513,23 +541,7 @@
                 //window.localStorage.removeItem(keyname);
                 // window.localStorage.setItem("key2", "value2");
             }
-            function addNote(index) {
-//                var favoritedRecipes_notes = JSON.parse(localStorage.getItem("arr_note"));
-//                if (favoritedRecipes_notes === null) {
-//                    favoritedRecipes_notes = [];
-//                }
-//                if (favoritedRecipes_notes.indexOf(index.toString()) === -1) {
-//                    favoritedRecipes_notes.push(index.toString());
-//                    alert("Added to my favorites.");
-//                } else {
-//                    if (index > -1) {
-//                        favoritedRecipes_notes.splice(favoritedRecipes_notes.indexOf(index.toString()), 1);
-//                    }
-//                    alert("Removed from my favorites.");
-//                }
-//                localStorage.setItem("arr_note", JSON.stringify(favoritedRecipes_notes));
-//                //updateMyFavorites_Listview();
-            }
+
             function updateMyFavorites_Listview() {
                 $('#listview_favorites li').remove();
 
@@ -543,10 +555,10 @@
                 for (var i = 0; i < favoritedRecipes.length; i++) {
                     var recipeIndex = parseInt(favoritedRecipes[i]);
                     var item = recipedata[recipeIndex];
-                    $list_item_html = $("<li style='border:2px solid #3366CC;'><a href='#open_recipe' class='to_openrecipe' data-params=" + recipeIndex + "><h1>" + item.name + "</h1><img style='height: 200px' src='" + item.src + "' alt='" + item.name + "'/></a><div style='background-color:lightblue'>" + item.rating + " Stars   <button onClick='favoriteIt(" + recipeIndex + ")' style='display:inline-block;float:center;background-color:#99CCFF;width:80% id='bt_add_ingrd' class='ui-btn ui-corner-all ui-icon-delete ui-btn-icon-notext'>trash Icon</button>Date Added: Dec 2014 </div></li>");
+                    //     alert(recipeIndex);
+                    $list_item_html = $("<li style='border:2px solid #3366CC;'><a href='#open_recipe' class='to_openrecipe' data-params=" + recipeIndex + "><h1>" + item.name + "</h1><img style='height: 180px' src='" + item.src + "' alt='" + item.name + "'/></a><div style='background-color:lightblue'>" + item.rating + " Stars   <button onClick='favoriteIt(" + recipeIndex + ")' style='display:inline-block;float:center;background-color:#99CCFF;width:80% id='bt_add_ingrd' class='ui-btn ui-corner-all ui-icon-delete ui-btn-icon-notext'>trash Icon</button>Date Added: Dec 2014 </div></li>");
                     $('#listview_favorites').append($list_item_html);
                 }
-
 
             }
             function checkAll_openRecipe() {
@@ -573,16 +585,16 @@
                 $("input.cb_shplst").prop("checked", true);//.checkboxradio("refresh");
                 $(".lb_shplst").trigger("click");
             }
-            //remember position on home page to go back to that position:
-            $("#home").bind('pagebeforehide', function (event, data) {
-                if (data.nextPage[0].id === "#open_recipe") {
-                    // Store the scroll position, in case we want to go back
-                    $("#home").scrollPosition = $("#listview_home").scrollTop();
-                }
-            });
-            $("#home").bind('pageshow', function () {
-                $("#listview_home").scrollTop($("#home").scrollPosition);
-            });
+//            //remember position on home page to go back to that position:
+//            $("#home").bind('pagebeforehide', function (event, data) {
+//                if (data.nextPage[0].id === "#open_recipe") {
+//                    // Store the scroll position, in case we want to go back
+//                    $("#home").scrollPosition = $("#listview_home").scrollTop();
+//                }
+//            });
+//            $("#home").bind('pageshow', function () {
+//                $("#listview_home").scrollTop($("#home").scrollPosition);
+//            });
             //$(function(){ //doesn't work
             //    $("#checkall_home").click(function(){
             //    $("form").find(":checkbox").attr("checked",true);    
@@ -637,46 +649,11 @@
                 showOrHideErrorMsg_Shplist();
             });
 
-            $("#favorites").on('pageshow', function (e) {
-                //Same as the one below, but this one is for newly newly created anchors. otherwise those are not binded, which means the open_recipe page transitioned from favorites page will not be updated since last time.
-                $('a.to_openrecipe').click(function (evt) {
-                    if (evt.handled !== true) {
-                        var me = $(this), data = me.data('params');
-                        //console.log(data);  the id in string
-                        var recipe_clicked = parseInt(data);
-
-                        //remove all children objects and texts in div class=ui-controlgroup-controls inside fieldset
-                        $("#open_recipe div.to_append_cb").empty();
-                        $("#open_recipe ol").empty();
-
-                        //append to: fieldset containing checkboxes and labels for checkboxes
-                        for (var i = 0; i < recipedata[recipe_clicked].ingredients.length; i++) {
-                            $lb_and_cb = $("<div class='ui-grid-a' ><div class='ui-block-a' style='width:10%'><input id='" + "cb" + i + "' type='checkbox' class='cb_openrecipe'/></div><div class='ui-block-b' style='width:90%'><label class='lb_openrecipe' for='" + "cb" + i + "'>" + recipedata[recipe_clicked].ingredients[i] + "</label></div></div>");
-                            $("#open_recipe div.to_append_cb").append($lb_and_cb);
-                        }
-                        $("#open_recipe div.to_append_cb").trigger("create");//apply styles after dynamically adding content to this item
-
-                        //append to: directions ol content:  
-                        for (var i = 0; i < recipedata[recipe_clicked].directions.length; i++) {
-                            $direction_item = $("<li>" + recipedata[recipe_clicked].directions[i] + "</li>");
-                            $("#open_recipe ol").append($direction_item);
-                        }
-                        //$("#open_recipe ol").trigger("create");
-
-                        //change header text:
-                        $("#open_recipe h1").html(recipedata[recipe_clicked].name);
-
-                        uncheckAll_openRecipe();
-                        //$("#open_recipe).trigger("create");
-                        evt.handled = true;
-                    }
-                });
-                $("#favorite").trigger("create");
-            });
-
+            //bind all anchors on listview items. because the newly created anchors are not binded yet.
             $("#home").on('pageshow', function (e) {
-                //bind the existing anchor in listview to open_recipe page (for creating ingrd and directions on open_recipe page when clicking on anchor)
-                $('a.to_openrecipe').click(function (evt) {
+                //  alert("show home page");
+                //Same as the one below, but this one is for newly newly created anchors. otherwise those are not binded, which means the open_recipe page transitioned from favorites page will not be updated since last time.
+                $('#home a.to_openrecipe').click(function (evt) {
                     if (evt.handled !== true) {
                         var me = $(this), data = me.data('params');
                         //console.log(data);  the id in string
@@ -708,10 +685,98 @@
                         evt.handled = true;
                     }
                 });
+                //       $("#favorites").trigger("create");
+                // $("#open_recipe").trigger("create");
+
             });
+
+            //same as above: bind all anchors on listview items. because the newly created anchors are not binded yet.
+//            $("#favorites").pagecontainer({
+//                beforeshow: function (event, ui) {}
+//            });
+//
+//            $("#favorites").on("pagecontainerbeforeshow", function (event, ui) {
+//
+//            });
+
+//page show is called even if it is navigated away:
+            $("#favorites").on('pageshow', function (e) {
+                //          alert("show favorites page");
+                updateMyFavorites_Listview();
+                //Same as the one below, but this one is for newly newly created anchors. otherwise those are not binded, which means the open_recipe page transitioned from favorites page will not be updated since last time.
+                $('#favorites a.to_openrecipe').click(function (event) {
+                    // if (event.handled !== true) {
+                    var me = $(this), data = me.data('params');
+                    //console.log(data);  the id in string
+                    var recipe_clicked = parseInt(data);
+
+                    //remove all children objects and texts in div class=ui-controlgroup-controls inside fieldset
+                    $("#open_recipe div.to_append_cb").empty();
+                    $("#open_recipe ol").empty();
+
+                    //append to: fieldset containing checkboxes and labels for checkboxes
+                    for (var i = 0; i < recipedata[recipe_clicked].ingredients.length; i++) {
+                        $lb_and_cb = $("<div class='ui-grid-a' ><div class='ui-block-a' style='width:10%'><input id='" + "cb" + i + "' type='checkbox' class='cb_openrecipe'/></div><div class='ui-block-b' style='width:90%'><label class='lb_openrecipe' for='" + "cb" + i + "'>" + recipedata[recipe_clicked].ingredients[i] + "</label></div></div>");
+                        $("#open_recipe div.to_append_cb").append($lb_and_cb);
+                    }
+                    $("#open_recipe div.to_append_cb").trigger("create");//apply styles after dynamically adding content to this item
+
+                    //append to: directions ol content:  
+                    for (var i = 0; i < recipedata[recipe_clicked].directions.length; i++) {
+                        $direction_item = $("<li>" + recipedata[recipe_clicked].directions[i] + "</li>");
+                        $("#open_recipe ol").append($direction_item);
+                    }
+                    //$("#open_recipe ol").trigger("create");
+
+                    //change header text:
+                    $("#open_recipe h1").html(recipedata[recipe_clicked].name);
+
+                    uncheckAll_openRecipe();
+                    $("#open_recipe").trigger("create");
+                    //       event.handled = true;
+                    //   }
+                });
+                //      $("#favorite").enhanceWithin();
+                //       $("#open_recipe").trigger("create");
+
+            });
+
 
             $(document).on('pageinit', function (e) {
                 initFavorite();
+//bind the existing anchor in listview to open_recipe page (for creating ingrd and directions on open_recipe page when clicking on anchor)
+                $('a.to_openrecipe').click(function (evt) {
+                    if (evt.handled !== true) {
+                        var me = $(this), data = me.data('params');
+                        //console.log(data);  the id in string
+                        var recipe_clicked = parseInt(data);
+
+                        //remove all children objects and texts in div class=ui-controlgroup-controls inside fieldset
+                        $("#open_recipe div.to_append_cb").empty();
+                        $("#open_recipe ol").empty();
+
+                        //append to: fieldset containing checkboxes and labels for checkboxes
+                        for (var i = 0; i < recipedata[recipe_clicked].ingredients.length; i++) {
+                            $lb_and_cb = $("<div class='ui-grid-a' ><div class='ui-block-a' style='width:10%'><input id='" + "cb" + i + "' type='checkbox' class='cb_openrecipe'/></div><div class='ui-block-b' style='width:90%'><label class='lb_openrecipe' for='" + "cb" + i + "'>" + recipedata[recipe_clicked].ingredients[i] + "</label></div></div>");
+                            $("#open_recipe div.to_append_cb").append($lb_and_cb);
+                        }
+                        $("#open_recipe div.to_append_cb").trigger("create");//apply styles after dynamically adding content to this item
+
+                        //append to: directions ol content:  
+                        for (var i = 0; i < recipedata[recipe_clicked].directions.length; i++) {
+                            $direction_item = $("<li>" + recipedata[recipe_clicked].directions[i] + "</li>");
+                            $("#open_recipe ol").append($direction_item);
+                        }
+                        //$("#open_recipe ol").trigger("create");
+
+                        //change header text:
+                        $("#open_recipe h1").html(recipedata[recipe_clicked].name);
+
+                        uncheckAll_openRecipe();
+                        //$("#open_recipe).trigger("create");
+                        evt.handled = true;
+                    }
+                });
 
                 //naming convention: #add2shplst on #open_recipe page
                 $('#add2shplst_openrecipe').click(function (evt) {
