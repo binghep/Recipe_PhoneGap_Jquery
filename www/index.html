@@ -48,12 +48,17 @@
                 width:600px;
             }
             label{
-                width:30em;
+                /*width:20em;*/
+                width:250px;
             }
             .header_footer_color{
                 background-color:#6666FF;
             }
-
+            /*            div {
+                            -webkit-border-image: url(border.png) 30 30 round;  Safari 3.1-5 
+                            -o-border-image: url(border.png) 30 30 round;  Opera 11-12.1 
+                            border-image: url(border.png) 30 30 round;
+                        }*/
         </style>
 
 
@@ -84,8 +89,8 @@
             </header>
 
             <article data-role="content" id="open_recipe_content">
-                <div>
-                    <h4>Ingredients:</h4>
+                <div style="border-image: url(border.png) 10 10 round;">
+                    Ingredients:
 
                     <!--dont use ui-field-contain class here, because I am building rows on the fly, jquery styles got messed up and are way too hard(60x effort) to achieve the same result as building it statically.so, I am ok with no native looking styles around my check box and labels.
                     -->
@@ -96,13 +101,10 @@
                         <div class="ui-block-a"><button type="button" id="checkall_openrecipe">Check All</button></div>
                         <div class="ui-block-b"><button type="button" id="add2shplst_openrecipe">Add to Shopping List</button></div>
                     </div>
-
-
-
                 </div>
-
-                <div>
-                    <h4>Directions:</h4>
+                <br />
+                <div style="border-image: url(border.png) 10 10 round;">
+                    Directions:
                     <ol>
                         <!--	<li> Stir in garlic and ginger; cook, stirring frequently, for 3 to 4 minutes. Season with salt and pepper, and then stir in black bean sauce. Continue cooking until green beans are tender.</li>
                         -->
@@ -114,10 +116,10 @@
             <footer data-role="footer" data-position="fixed"  data-tap-toggle="false">
                 <nav  data-role="navbar"> 
                     <ul>
-                        <li><a style="background-color:#343481" href="#home" data-icon="home"><label>Home</label></a></li>
-                        <li><a style="background-color:#6666FF" href="#favorites" data-icon="star"><label>Home</label></a></li>
-                        <li><a style="background-color:#6666FF" href="#shoppinglist" data-icon="shop"><label>Home</label> </a></li>
-                        <li><a style="background-color:#6666FF" href="#profile" data-icon="user"><label>Home</label></a></li>
+                        <li><a style="background-color:#343481" href="#home" data-icon="home"><label>&nbsp;</label></a></li>
+                        <li><a style="background-color:#6666FF" href="#favorites" data-icon="star"><label>&nbsp;</label></a></li>
+                        <li><a style="background-color:#6666FF" href="#shoppinglist" data-icon="shop"><label>&nbsp;</label> </a></li>
+                        <li><a style="background-color:#6666FF" href="#profile" data-icon="user"><label>&nbsp;</label></a></li>
                     </ul>
                 </nav>
             </footer>
@@ -140,10 +142,10 @@
             <footer data-role="footer" data-position="fixed" data-tap-toggle="false">
                 <nav data-role="navbar">
                     <ul>
-                        <li><a style="background-color:#343481" href="#home" data-icon="home"><label>Home</label></a></li>
-                        <li><a style="background-color:#6666FF" href="#favorites" data-icon="star"><label>Home</label></a></li>
-                        <li><a style="background-color:#6666FF" href="#shoppinglist" data-icon="shop"><label>Home</label> </a></li>
-                        <li><a style="background-color:#6666FF" href="#profile" data-icon="user"><label>Home</label></a></li>
+                        <li><a style="background-color:#343481" href="#home" data-icon="home"><label>&nbsp;</label></a></li>
+                        <li><a style="background-color:#6666FF" href="#favorites" data-icon="star"><label>&nbsp;</label></a></li>
+                        <li><a style="background-color:#6666FF" href="#shoppinglist" data-icon="shop"><label>&nbsp;</label> </a></li>
+                        <li><a style="background-color:#6666FF" href="#profile" data-icon="user"><label>&nbsp;</label></a></li>
                     </ul>
                 </nav>
             </footer>
@@ -259,10 +261,10 @@
             <footer data-role="footer" data-position="fixed" data-tap-toggle="false">
                 <nav data-role="navbar">
                     <ul>
-                        <li><a style="background-color:#343481" href="#home" data-icon="home"><label>Home</label></a></li>
-                        <li><a style="background-color:#6666FF" href="#favorites" data-icon="star"><label>Home</label></a></li>
-                        <li><a style="background-color:#6666FF" href="#shoppinglist" data-icon="shop"><label>Home</label></a></li>
-                        <li><a style="background-color:#6666FF" href="#profile" data-icon="user"><label>Home</label></a></li>
+                        <li><a style="background-color:#343481" href="#home" data-icon="home"><label>&nbsp;</label></a></li>
+                        <li><a style="background-color:#6666FF" href="#favorites" data-icon="star"><label>&nbsp;</label></a></li>
+                        <li><a style="background-color:#6666FF" href="#shoppinglist" data-icon="shop"><label>&nbsp;</label></a></li>
+                        <li><a style="background-color:#6666FF" href="#profile" data-icon="user"><label>&nbsp;</label></a></li>
                     </ul>
                 </nav>
             </footer>
@@ -284,10 +286,10 @@
             <footer data-role="footer" data-position="fixed"  data-tap-toggle="false">
                 <nav data-role="navbar">
                     <ul>
-                        <li><a style="background-color:#6666FF" href="#home" data-icon="home"><label>Home</label></a></li>
-                        <li><a style="background-color:#343481" href="#favorites" data-icon="star"><label>Home</label></a></li>
-                        <li><a style="background-color:#6666FF" href="#shoppinglist" data-icon="shop"><label>Home</label></a></li>
-                        <li><a style="background-color:#6666FF" href="#profile" data-icon="user"><label>Home</label></a></li>
+                        <li><a style="background-color:#6666FF" href="#home" data-icon="home"><label>&nbsp;</label></a></li>
+                        <li><a style="background-color:#343481" href="#favorites" data-icon="star"><label>&nbsp;</label></a></li>
+                        <li><a style="background-color:#6666FF" href="#shoppinglist" data-icon="shop"><label>&nbsp;</label></a></li>
+                        <li><a style="background-color:#6666FF" href="#profile" data-icon="user"><label>&nbsp;</label></a></li>
                     </ul>
                 </nav>
             </footer>
@@ -300,52 +302,55 @@
 
             <article data-role="content" id="shoppinglistcontent">
                 <div id="shplst_empty_text" style="color: blue">Your shopping list is empty.</div>
-                <div id="shplst_grid" class="ui-grid-a" >
-                    <div class="ui-block-a" style="width:90%">
-                        <input type="text" id="enteredIngrd" placeholder="Enter ingredient to buy"/></div>
-                    <div class="ui-block-b" style="width:10%">
-                        <button id="bt_add_ingrd" class="ui-btn ui-corner-all ui-icon-check ui-btn-icon-notext">check Icon</button>
+                <div style="border-image: url(border.png) 10 10 round;">
+                    <div id="shplst_grid" class="ui-grid-a" >
+                        <div class="ui-block-a" style="width:90%">
+                            <input type="text" id="enteredIngrd" placeholder="Enter ingredient to buy"/></div>
+                        <div class="ui-block-b" style="width:10%">
+                            <button id="bt_add_ingrd" class="ui-btn ui-corner-all ui-icon-check ui-btn-icon-notext">check Icon</button>
+                        </div>
+                    </div>
+
+                    <!-- these will be affected by check all -->
+                    <div class="to_append_cb">
+                    </div>
+                    <!--Because checkboxes use the label element for the text displayed next to the checkbox form element, we recommend wrapping the checkbox in a fieldset element that has a legend which acts as the title for the question.
+                     Add the data-role="controlgroup" attribute to the fieldset so it can be styled in a parallel way as text inputs, selects or other form elements.-->
+                    <!-- <legend><h4>Ingredients</h4>`</legend>-->
+
+                    <!--    <input id="cbx1"  type="checkbox" class="cb_shplst"/>
+                        <label class="lb_cb_shplst" for="cbx1">1 cup vegetable oil</label>
+                        
+                        <input id="cbx2" type="checkbox" class="cb_shplst"/> 
+                        <label class="lb_cb_shplst" for="cbx2">1 cup vegetable oil</label>
+                        
+                        <input id="cbx3" type="checkbox"  class="cb_shplst"/>
+                        <label class="lb_cb_shplst" for="cbx3">13 pounds fresh green beans, trimmed</label>
+                        
+                        <input id="cbx4" type="checkbox"  class="cb_shplst"/> 
+                        <label class="lb_cb_shplst" for="cbx4">5 tablespoons minced garlic</label>
+                        
+                        <input id="cbx5" type="checkbox"  class="cb_shplst"/> 
+                        <label class="lb_cb_shplst" for="cbx5">5 tablespoons minced fresh ginger root</label>-->
+
+
+
+
+                    <div class="ui-grid-a" >
+                        <div class="ui-block-a"><button id="checkall_shplst">Check All</button></div>
+                        <div class="ui-block-b"><button id="dlt_item_shplst">Delete</button></div>
                     </div>
                 </div>
 
-                <!-- these will be affected by check all -->
-                <div class="to_append_cb">
-                </div>
-                <!--Because checkboxes use the label element for the text displayed next to the checkbox form element, we recommend wrapping the checkbox in a fieldset element that has a legend which acts as the title for the question.
-                 Add the data-role="controlgroup" attribute to the fieldset so it can be styled in a parallel way as text inputs, selects or other form elements.-->
-                <!-- <legend><h4>Ingredients</h4>`</legend>-->
-
-                <!--    <input id="cbx1"  type="checkbox" class="cb_shplst"/>
-                    <label class="lb_cb_shplst" for="cbx1">1 cup vegetable oil</label>
-                    
-                    <input id="cbx2" type="checkbox" class="cb_shplst"/> 
-                    <label class="lb_cb_shplst" for="cbx2">1 cup vegetable oil</label>
-                    
-                    <input id="cbx3" type="checkbox"  class="cb_shplst"/>
-                    <label class="lb_cb_shplst" for="cbx3">13 pounds fresh green beans, trimmed</label>
-                    
-                    <input id="cbx4" type="checkbox"  class="cb_shplst"/> 
-                    <label class="lb_cb_shplst" for="cbx4">5 tablespoons minced garlic</label>
-                    
-                    <input id="cbx5" type="checkbox"  class="cb_shplst"/> 
-                    <label class="lb_cb_shplst" for="cbx5">5 tablespoons minced fresh ginger root</label>-->
-
-
-
-
-                <div class="ui-grid-a" >
-                    <div class="ui-block-a"><button id="checkall_shplst">Check All</button></div>
-                    <div class="ui-block-b"><button id="dlt_item_shplst">Delete</button></div>
-                </div>
             </article>
 
             <footer data-role="footer" data-position="fixed"  data-tap-toggle="false">
                 <nav data-role="navbar">
                     <ul>
-                        <li><a style="background-color:#6666FF" href="#home" data-icon="home"><label>Home</label></a></li>
-                        <li><a style="background-color:#6666FF" href="#favorites" data-icon="star"><label>Home</label></a></li>
-                        <li><a style="background-color:#343481" href="#shoppinglist" data-icon="shop"><label>Home</label></a></li>
-                        <li><a style="background-color:#6666FF" href="#profile" data-icon="user"><label>Home</label></a></li>
+                        <li><a style="background-color:#6666FF" href="#home" data-icon="home"><label>&nbsp;</label></a></li>
+                        <li><a style="background-color:#6666FF" href="#favorites" data-icon="star"><label>&nbsp;</label></a></li>
+                        <li><a style="background-color:#343481" href="#shoppinglist" data-icon="shop"><label>&nbsp;</label></a></li>
+                        <li><a style="background-color:#6666FF" href="#profile" data-icon="user"><label>&nbsp;</label></a></li>
                     </ul>
                 </nav>
             </footer>
@@ -357,26 +362,27 @@
             </header>
 
             <article data-role="content" id="profilecontent">
-                <h3>My Account:</h3>
-                <label>User Name: John2014</label>
-                <label>Email: John2014@gmail.com</label>
+                <div style="border-image: url(border.png) 10 10 round;">
+                    <h3>My Account:</h3>
+                    <label>User Name: John2014</label>
+                    <label>Email: John2014@gmail.com</label>
+                    <button onclick="location.href = '#signin'">Sign Out</button>
+                </div>
 
-                <button onclick="location.href = '#signin'">Sign Out</button>
                 <a href="#publish" class="ui-btn ui-corner-all ui-icon-arrow-u">Publish Recipe to the World</a> 
 
+                <div style="border-image: url(border.png) 10 10 round;">
+                    <h3>Recipes I Uploaded:</h3>
 
-                <h3>Recipes I Uploaded:</h3>
-
-                <ul data-role="listview" data-inset="true">
-                    <li>
-                        <a href="#greenbean">
-                            <h1>Chinese Green Bean Stir-Fry</h1>
-                            <img src="img/green_bean.jpg" alt="green bean stir fry"/>
-                        </a>
-                    </li>
-
-                </ul>
-
+                    <ul data-role="listview" data-inset="true">
+                        <li>
+                            <a href="#greenbean">
+                                <h1>Chinese Green Bean Stir-Fry</h1>
+                                <img src="img/green_bean.jpg" alt="green bean stir fry"/>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
             </article>
 
@@ -502,20 +508,37 @@
                 //window.localStorage.removeItem(keyname);
                 // window.localStorage.setItem("key2", "value2");
             }
+            function addNote(index) {
+//                var favoritedRecipes_notes = JSON.parse(localStorage.getItem("arr_note"));
+//                if (favoritedRecipes_notes === null) {
+//                    favoritedRecipes_notes = [];
+//                }
+//                if (favoritedRecipes_notes.indexOf(index.toString()) === -1) {
+//                    favoritedRecipes_notes.push(index.toString());
+//                    alert("Added to my favorites.");
+//                } else {
+//                    if (index > -1) {
+//                        favoritedRecipes_notes.splice(favoritedRecipes_notes.indexOf(index.toString()), 1);
+//                    }
+//                    alert("Removed from my favorites.");
+//                }
+//                localStorage.setItem("arr_note", JSON.stringify(favoritedRecipes_notes));
+//                //updateMyFavorites_Listview();
+            }
             function updateMyFavorites_Listview() {
                 $('#listview_favorites li').remove();
 
                 var favoritedRecipes = JSON.parse(localStorage.getItem("arr"));
 
                 if (favoritedRecipes === null || favoritedRecipes.length === 0) {
-                    $list_empty_div_html = $("<li><div style:'color: blue'>You have not saved any recipes yet.</div></li>");
+                    $list_empty_div_html = $("<li><div style:'color: blue'>You have not saved any recipes yet. Here, you can add any recipes to try out and add notes to them. </div></li>");
                     $('#listview_favorites').append($list_empty_div_html);
                     return;
                 }
                 for (var i = 0; i < favoritedRecipes.length; i++) {
                     var recipeIndex = parseInt(favoritedRecipes[i]);
                     var item = recipedata[recipeIndex];
-                    $list_item_html = $("<li><a href='#open_recipe' class='to_openrecipe' data-params=" + recipeIndex + "><h1>" + item.name + "</h1><img style='height: 250px' src='" + item.src + "' alt='" + item.name + "'/></a><div style='background-color:lightblue'>" + item.rating + " Stars   <button onClick='favoriteIt(" + recipeIndex + ")' style='display:inline-block;float:center;background-color:#99CCFF;width:80% id='bt_add_ingrd' class='ui-btn ui-corner-all ui-icon-delete ui-btn-icon-notext'>trash Icon</button>Date Added: Dec 2014</div></li>");
+                    $list_item_html = $("<li><a href='#open_recipe' class='to_openrecipe' data-params=" + recipeIndex + "><h1>" + item.name + "</h1><img style='height: 250px' src='" + item.src + "' alt='" + item.name + "'/></a><div style='background-color:lightblue'>" + item.rating + " Stars   <button onClick='favoriteIt(" + recipeIndex + ")' style='display:inline-block;float:center;background-color:#99CCFF;width:80% id='bt_add_ingrd' class='ui-btn ui-corner-all ui-icon-delete ui-btn-icon-notext'>trash Icon</button>Date Added: Dec 2014 </div></li>");
                     $('#listview_favorites').append($list_item_html);
                 }
 
@@ -574,6 +597,10 @@
             $("button#bt_add_ingrd").click(function (evt) {
                 var numItemsInShplst = $(".lb_shplst").size();
                 //console.debug("before adding this ingrd: "+numItemsInShplst); 
+                if ($("#enteredIngrd").val()===""){
+                    alert("Ingredient name cannot be empty.");
+                    return;
+                }
                 $lb_and_cb = $("<div class='ui-grid-a' ><div class='ui-block-a' style='width:10%'><input id='" + "cb_" + numItemsInShplst + "' type='checkbox' class='cb_shplst'/></div><div class='ui-block-b' style='width:90%'><label class='lb_shplst' for='" + "cb_" + numItemsInShplst + "'>" + $("#enteredIngrd").val() + "</label></div></div>");
                 $("#shoppinglist div.to_append_cb").append($lb_and_cb); //the class is on a div instantiated inside fieldview at run time on shopping list page
                 $("#enteredIngrd").val("");
@@ -605,7 +632,7 @@
                 showOrHideErrorMsg_Shplist();
             });
 
-            $("#favorites").on('pageshow', function(e){
+            $("#favorites").on('pageshow', function (e) {
                 //Same as the one below, but this one is for newly newly created anchors. otherwise those are not binded, which means the open_recipe page transitioned from favorites page will not be updated since last time.
                 $('a.to_openrecipe').click(function (evt) {
                     if (evt.handled !== true) {
@@ -640,11 +667,11 @@
                     }
                 });
             });
-            
+
             $(document).on('pageinit', function (e) {
                 initFavorite();
                 //bind the existing anchor in listview to open_recipe page (for creating ingrd and directions on open_recipe page when clicking on anchor)
-                 $('a.to_openrecipe').click(function (evt) {
+                $('a.to_openrecipe').click(function (evt) {
                     if (evt.handled !== true) {
                         var me = $(this), data = me.data('params');
                         //console.log(data);  the id in string
