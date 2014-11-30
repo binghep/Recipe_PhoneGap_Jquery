@@ -79,8 +79,8 @@
         <div data-role="page" data-dom-cache="false" id="open_recipe">
             <header data-role="header" style="background-color:#6666FF">
                 <h1> recipe name </h1>
-                <a href="#home" class="ui-btn ui-corner-all ui-icon-carat-l ui-btn-icon-notext">Carat-l Icon</a>
-                <a href="#publish" class="ui-btn ui-corner-all ui-icon-arrow-u ui-btn-icon-notext">arrow-u Icon</a>
+                <a href="#home" class="ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext">was ui-icon-carat-l </a>
+                <!--<a href="#publish" class="ui-btn ui-corner-all ui-icon-arrow-u ui-btn-icon-notext">arrow-u Icon</a>-->
             </header>
 
             <article data-role="content" id="open_recipe_content">
@@ -127,8 +127,7 @@
         <div data-role="page" data-dom-cache="false" data-theme="a" id="home">
             <header data-role="header"  style="background-color:#6666FF" >
                 <h1> Home </h1>
-                <a href="#">Popular</a>
-                <a href="#publish" class="ui-btn ui-corner-all ui-icon-arrow-u ui-btn-icon-notext">arrow-u Icon</a> 
+                <!--<a href="#">Popular</a>-->
             </header>
 
             <article data-role="content" id="home_content">
@@ -238,9 +237,9 @@
 3.
                         </textarea>
                     </li>
-                    <li><div  style="margin:0 auto;">
-                            <a href="#"><img src="http://dummyimage.com/500x400/292929/e3e3e3&text=Add Photo" alt="" /></a>
-                        </div>
+                    <li>
+                        <button> Add Photo </button>
+                        <!--<div  style="margin:0 auto;"><a href="#"><img src="http://dummyimage.com/500x400/292929/e3e3e3&text=Add Photo" alt="" /></a>  </div>-->
                     </li>
                     <!--			<a href="#" data-icon="plus">Add Photo</a>-->
                 </ul>
@@ -300,7 +299,7 @@
             </header>
 
             <article data-role="content" id="shoppinglistcontent">
-
+                <div id="shplst_empty_text" style="color: blue">Your shopping list is empty.</div>
                 <div id="shplst_grid" class="ui-grid-a" >
                     <div class="ui-block-a" style="width:90%">
                         <input type="text" id="enteredIngrd" placeholder="Enter ingredient to buy"/></div>
@@ -361,7 +360,11 @@
                 <h3>My Account:</h3>
                 <label>User Name: John2014</label>
                 <label>Email: John2014@gmail.com</label>
+
                 <button onclick="location.href = '#signin'">Sign Out</button>
+                <a href="#publish" class="ui-btn ui-corner-all ui-icon-arrow-u">Publish Recipe to the World</a> 
+
+
                 <h3>Recipes I Uploaded:</h3>
 
                 <ul data-role="listview" data-inset="true">
@@ -403,62 +406,7 @@
 
 
         <script type="text/javascript">
-            window.localStorage.clear();//localStorage is now empty
-            function favoriteIt(index) {
-                var favoritedRecipes = JSON.parse(localStorage.getItem("arr"));
-                if (favoritedRecipes === null) {
-                    favoritedRecipes = [];
-                }
-                favoritedRecipes.push(index.toString());
-                localStorage.setItem("arr", JSON.stringify(favoritedRecipes));
-                for (var i = 0; i < localStorage.length; i++) {
-                    $('#listview_favorites').append(localStorage.getItem(localStorage.key(i)));
-                }
-
-                //    window.localStorage.setItem("Peng", "jiayi");
-                //    var keyname = window.localStorage.key(0);
-                //    alert(keyname);
-                //    var value = window.localStorage.getItem(keyname);
-                //    alert(value);
-                //window.localStorage.removeItem(keyname);
-                // window.localStorage.setItem("key2", "value2");
-            }
-            function checkAll_openRecipe() {
-                //alert("checking all");
-                $("#checkall_openrecipe").html("Uncheck All");
-                $("input.cb_openrecipe").prop("checked", false);//.checkboxradio("refresh");
-                $(".lb_openrecipe").trigger("click");
-            }
-            function uncheckAll_openRecipe() {
-                //alert("unChecking All");
-                $("#checkall_openrecipe").html("Check All");
-                $("input.cb_openrecipe").prop("checked", true);
-                $(".lb_openrecipe").trigger("click");
-            }
-            function uncheckAll_shplst() {
-                //alert("Checking All");
-                $("#checkall_shplst").html("Uncheck All");
-                $("input.cb_shplst").prop("checked", false);
-                $(".lb_shplst").trigger("click");
-            }
-            function checkAll_shplst() {
-                //alert("unchecking all");
-                $("#checkall_shplst").html("Check All");
-                $("input.cb_shplst").prop("checked", true);//.checkboxradio("refresh");
-                $(".lb_shplst").trigger("click");
-            }
-
-            //$(function(){ //doesn't work
-            //    $("#checkall_home").click(function(){
-            //    $("form").find(":checkbox").attr("checked",true);    
-            //    });
-            //});
-
-            //$("ul li h1").css("border", "3px solid red");
-            //$(":checkbox").before("Checkbox:");
-            //$(":checked").before("Checked:");
-
-
+            /*load recipedata first, otherwise functions use recipedata[i] throw an error. */
             var recipedata = [];
             $.getJSON("recipedata.json", function (data) {
                 console.log("successfully read the json data into javascript object");
@@ -494,18 +442,135 @@
                             recipedata.push(obj);
 
                             //dynamically add this listview li into home page:
-                            $list_item_html = $("<li><a href='#open_recipe' class='to_openrecipe' data-params=" + i + "><h1>" + item.name + "</h1><img src='" + item.src + "' alt='" + item.name + "'/></a><div style='background-color:lightblue'>4.5 Stars   <button onClick='favoriteIt(" + i + ")' style='display:inline-block;float:center;background-color:#99CCFF;width:80% id='bt_add_ingrd' class='ui-btn ui-corner-all ui-icon-star ui-btn-icon-notext'>star Icon</button></div></li>");
+                            $list_item_html = $("<li><a href='#open_recipe' class='to_openrecipe' data-params=" + i + "><h1>" + item.name + "</h1><img  style='height: 250px' src='" + item.src + "' alt='" + item.name + "'/></a><div style='background-color:lightblue'>" + item.rating + " Stars   <button onClick='favoriteIt(" + i + ")' style='display:inline-block;float:center;background-color:#99CCFF;width:80% id='bt_add_ingrd' class='ui-btn ui-corner-all ui-icon-star ui-btn-icon-notext'>star Icon</button></div></li>");
                             $("#listview_home").append($list_item_html);
                         });
                     });
+
+            $(document).delegate('#shoppinglist', 'pageshow', function () {
+                //alert("#open_recipe page show!");
+                showOrHideErrorMsg_Shplist();
+            });
+
+            function showOrHideErrorMsg_Shplist() {
+                if ($("#shoppinglist .cb_shplst").length === 0) {
+//                   var empty_text="Your shopping list is empty.";
+//                   $("#shoppinglist input[type=text]").parent().parent().before(empty_text);
+                    $("#shplst_empty_text").show();
+                } else {
+                    $("#shplst_empty_text").hide();
+                }
+            }
+
+            function initFavorite() {
+                updateMyFavorites_Listview();
+
+                if (navigator.userAgent.indexOf("Android") !== -1) {//get rid of flashing twice problem on Android
+                    $.mobile.defaultPageTransition = 'none';
+                    $.mobile.defaultDialogTransition = 'none';
+                }
+            }
+
+
+
+            window.localStorage.clear();//localStorage is now empty
+            function favoriteIt(index) {
+                var favoritedRecipes = JSON.parse(localStorage.getItem("arr"));
+                if (favoritedRecipes === null) {
+                    favoritedRecipes = [];
+                }
+                if (favoritedRecipes.indexOf(index.toString()) === -1) {
+                    favoritedRecipes.push(index.toString());
+                    alert("Added to my favorites.");
+                } else {
+                    if (index > -1) {
+                        favoritedRecipes.splice(favoritedRecipes.indexOf(index.toString()), 1);
+                    }
+                    alert("Removed from my favorites.");
+                }
+                localStorage.setItem("arr", JSON.stringify(favoritedRecipes));
+                updateMyFavorites_Listview();
+//                for (var i = 0; i < localStorage.length; i++) {
+//                    $('#listview_favorites').append(localStorage.getItem(localStorage.key(i)));
+//                }
+
+                //    window.localStorage.setItem("Peng", "jiayi");
+                //    var keyname = window.localStorage.key(0);
+                //    alert(keyname);
+                //    var value = window.localStorage.getItem(keyname);
+                //    alert(value);
+                //window.localStorage.removeItem(keyname);
+                // window.localStorage.setItem("key2", "value2");
+            }
+            function updateMyFavorites_Listview() {
+                $('#listview_favorites li').remove();
+
+                var favoritedRecipes = JSON.parse(localStorage.getItem("arr"));
+
+                if (favoritedRecipes === null || favoritedRecipes.length === 0) {
+                    $list_empty_div_html = $("<li><div style:'color: blue'>You have not saved any recipes yet.</div></li>");
+                    $('#listview_favorites').append($list_empty_div_html);
+                    return;
+                }
+                for (var i = 0; i < favoritedRecipes.length; i++) {
+                    var recipeIndex = parseInt(favoritedRecipes[i]);
+                    var item = recipedata[recipeIndex];
+                    $list_item_html = $("<li><a href='#open_recipe' class='to_openrecipe' data-params=" + recipeIndex + "><h1>" + item.name + "</h1><img src='" + item.src + "' alt='" + item.name + "'/></a><div style='background-color:lightblue'>" + item.rating + " Stars   <button onClick='favoriteIt(" + recipeIndex + ")' style='display:inline-block;float:center;background-color:#99CCFF;width:80% id='bt_add_ingrd' class='ui-btn ui-corner-all ui-icon-delete ui-btn-icon-notext'>trash Icon</button>Date Added: Dec 2014</div></li>");
+                    $('#listview_favorites').append($list_item_html);
+                }
+
+
+            }
+            function checkAll_openRecipe() {
+                //alert("checking all");
+                $("#checkall_openrecipe").html("Uncheck All");
+                $("input.cb_openrecipe").prop("checked", false);//.checkboxradio("refresh");
+                $(".lb_openrecipe").trigger("click");
+            }
+            function uncheckAll_openRecipe() {
+                //alert("unChecking All");
+                $("#checkall_openrecipe").html("Check All");
+                $("input.cb_openrecipe").prop("checked", true);
+                $(".lb_openrecipe").trigger("click");
+            }
+            function checkAll_shplst() {
+                //alert("Checking All");
+                $("#checkall_shplst").html("Uncheck All");
+                $("input.cb_shplst").prop("checked", false);
+                $(".lb_shplst").trigger("click");
+            }
+            function uncheckAll_shplst() {
+                //alert("unchecking all");
+                $("#checkall_shplst").html("Check All");
+                $("input.cb_shplst").prop("checked", true);//.checkboxradio("refresh");
+                $(".lb_shplst").trigger("click");
+            }
+            //remember position on home page to go back to that position:
+            $("#home").bind('pagebeforehide', function (event, data) {
+                if (data.nextPage[0].id === "#open_recipe") {
+                    // Store the scroll position, in case we want to go back
+                    $("#home").scrollPosition = $("#listview_home").scrollTop();
+                }
+            });
+            $("#home").bind('pageshow', function () {
+                $("#listview_home").scrollTop($("#home").scrollPosition);
+            });
+            //$(function(){ //doesn't work
+            //    $("#checkall_home").click(function(){
+            //    $("form").find(":checkbox").attr("checked",true);    
+            //    });
+            //});
+
+            //$("ul li h1").css("border", "3px solid red");
+            //$(":checkbox").before("Checkbox:");
+            //$(":checked").before("Checked:");
+
+
 
             //$("#listview_home").listview("refresh");
             //  $("#listview_home li").remove(); //remove only if the set is not empty
 
 
-            //$(document).delegate('#open_recipe', 'pageshow', function() {
-            //    alert("#open_recipe page show!");
-            //}); 
             $("button#bt_add_ingrd").click(function (evt) {
                 var numItemsInShplst = $(".lb_shplst").size();
                 //console.debug("before adding this ingrd: "+numItemsInShplst); 
@@ -513,10 +578,12 @@
                 $("#shoppinglist div.to_append_cb").append($lb_and_cb); //the class is on a div instantiated inside fieldview at run time on shopping list page
                 $("#enteredIngrd").val("");
                 //console.debug("after adding this ingrd: "+$(".lb_shplst").size()); 
+
+                showOrHideErrorMsg_Shplist();
             });
 
             $("a[href='#shoppinglist']").click(function (evt) {
-                //alert("click");
+                //alert("navigating to shopping list page");
                 uncheckAll_shplst();
             });
 
@@ -533,11 +600,15 @@
                 $("input.cb_shplst:checked").parent().parent().remove();//remove all div class=ui-checkbox in div class=ui-controlgroup-controls in fieldset.
                 // $("input.cb_shplst:checked").prev().remove();//remove all the labels for the checked cb first
                 // $("input.cb_shplst:checked").remove();
-                uncheckAll_shplst();
+
+                $("#checkall_shplst").html("Check All");
+                showOrHideErrorMsg_Shplist();
             });
 
 
             $(document).on('pageinit', function (e) {
+                initFavorite();
+
                 $('a.to_openrecipe').click(function (evt) {
                     if (evt.handled !== true) {
                         var me = $(this), data = me.data('params');
