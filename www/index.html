@@ -515,7 +515,7 @@
                 for (var i = 0; i < favoritedRecipes.length; i++) {
                     var recipeIndex = parseInt(favoritedRecipes[i]);
                     var item = recipedata[recipeIndex];
-                    $list_item_html = $("<li><a href='#open_recipe' class='to_openrecipe' data-params=" + recipeIndex + "><h1>" + item.name + "</h1><img src='" + item.src + "' alt='" + item.name + "'/></a><div style='background-color:lightblue'>" + item.rating + " Stars   <button onClick='favoriteIt(" + recipeIndex + ")' style='display:inline-block;float:center;background-color:#99CCFF;width:80% id='bt_add_ingrd' class='ui-btn ui-corner-all ui-icon-delete ui-btn-icon-notext'>trash Icon</button>Date Added: Dec 2014</div></li>");
+                    $list_item_html = $("<li><a href='#open_recipe' class='to_openrecipe' data-params=" + recipeIndex + "><h1>" + item.name + "</h1><img style='height: 250px' src='" + item.src + "' alt='" + item.name + "'/></a><div style='background-color:lightblue'>" + item.rating + " Stars   <button onClick='favoriteIt(" + recipeIndex + ")' style='display:inline-block;float:center;background-color:#99CCFF;width:80% id='bt_add_ingrd' class='ui-btn ui-corner-all ui-icon-delete ui-btn-icon-notext'>trash Icon</button>Date Added: Dec 2014</div></li>");
                     $('#listview_favorites').append($list_item_html);
                 }
 
@@ -605,11 +605,46 @@
                 showOrHideErrorMsg_Shplist();
             });
 
+            $("#favorites").on('pageshow', function(e){
+                //Same as the one below, but this one is for newly newly created anchors. otherwise those are not binded, which means the open_recipe page transitioned from favorites page will not be updated since last time.
+                $('a.to_openrecipe').click(function (evt) {
+                    if (evt.handled !== true) {
+                        var me = $(this), data = me.data('params');
+                        //console.log(data);  the id in string
+                        var recipe_clicked = parseInt(data);
 
+                        //remove all children objects and texts in div class=ui-controlgroup-controls inside fieldset
+                        $("#open_recipe div.to_append_cb").empty();
+                        $("#open_recipe ol").empty();
+
+                        //append to: fieldset containing checkboxes and labels for checkboxes
+                        for (var i = 0; i < recipedata[recipe_clicked].ingredients.length; i++) {
+                            $lb_and_cb = $("<div class='ui-grid-a' ><div class='ui-block-a' style='width:10%'><input id='" + "cb" + i + "' type='checkbox' class='cb_openrecipe'/></div><div class='ui-block-b' style='width:90%'><label class='lb_openrecipe' for='" + "cb" + i + "'>" + recipedata[recipe_clicked].ingredients[i] + "</label></div></div>");
+                            $("#open_recipe div.to_append_cb").append($lb_and_cb);
+                        }
+                        $("#open_recipe div.to_append_cb").trigger("create");//apply styles after dynamically adding content to this item
+
+                        //append to: directions ol content:  
+                        for (var i = 0; i < recipedata[recipe_clicked].directions.length; i++) {
+                            $direction_item = $("<li>" + recipedata[recipe_clicked].directions[i] + "</li>");
+                            $("#open_recipe ol").append($direction_item);
+                        }
+                        //$("#open_recipe ol").trigger("create");
+
+                        //change header text:
+                        $("#open_recipe h1").html(recipedata[recipe_clicked].name);
+
+                        uncheckAll_openRecipe();
+                        //$("#open_recipe).trigger("create");
+                        evt.handled = true;
+                    }
+                });
+            });
+            
             $(document).on('pageinit', function (e) {
                 initFavorite();
-
-                $('a.to_openrecipe').click(function (evt) {
+                //bind the existing anchor in listview to open_recipe page (for creating ingrd and directions on open_recipe page when clicking on anchor)
+                 $('a.to_openrecipe').click(function (evt) {
                     if (evt.handled !== true) {
                         var me = $(this), data = me.data('params');
                         //console.log(data);  the id in string
@@ -645,7 +680,7 @@
 
 
 
-
+                //naming convention: #add2shplst on #open_recipe page
                 $('#add2shplst_openrecipe').click(function (evt) {
                     if (evt.handled !== true) // This will prevent event triggering more then once
                     {
