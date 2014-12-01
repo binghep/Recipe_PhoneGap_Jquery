@@ -512,6 +512,8 @@
             }
 
             function favoriteIt(index) {
+                //var turn_yellow=$("#listview_home div").eq(index);
+                var turn_yellow=$("#listview_home a[data-params='"+index+"']").next();//the div
                 var favoritedRecipes = JSON.parse(localStorage.getItem("arr"));
                 if (favoritedRecipes === null) {
                     favoritedRecipes = [];
@@ -519,15 +521,20 @@
                 if (favoritedRecipes.indexOf(index.toString()) === -1) {
                     favoritedRecipes.push(index.toString());
                     localStorage.setItem("arr", JSON.stringify(favoritedRecipes));
-                    alert("Added to my favorites.");
+                    turn_yellow.css("background-color", "yellow") ;
+                    //alert("Added to my favorites.");
                 } else {
                     if (index > -1) {
                         favoritedRecipes.splice(favoritedRecipes.indexOf(index.toString()), 1);
                     }
                     localStorage.setItem("arr", JSON.stringify(favoritedRecipes));
                     updateMyFavorites_Listview();
-                    alert("Removed from my favorites.");
+                    turn_yellow.css("background-color", "lightblue") ;
+                    //alert("Removed from my favorites.");
                 }
+                
+                //alert(turn_yellow.css());
+                
                 //         updateMyFavorites_Listview();
 //                for (var i = 0; i < localStorage.length; i++) {
 //                    $('#listview_favorites').append(localStorage.getItem(localStorage.key(i)));
